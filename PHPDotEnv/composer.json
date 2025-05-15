@@ -1,0 +1,11 @@
+{
+    "name": "vendor/hospital-management",
+    "autoload": {
+        "psr-4": {
+            "Vendor\\HospitalManagement\\": "src/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
