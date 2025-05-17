@@ -10,5 +10,5 @@ $dbpassword = $_ENV['DB_PASSWORD'];
 $dbname = $_ENV['DB_NAME'];
 
 
-echo  $dbhost . " " . $dbusername . " " . $dbpassword . " " . $dbname;
+
 $dbcon = mysqli_connect($dbhost, $dbusername, $dbpassword, $dbname) or die("Could not connect to server");
