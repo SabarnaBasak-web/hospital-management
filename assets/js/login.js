@@ -27,9 +27,8 @@ $("#login-form").submit((e) => {
     success: function (response) {
       const parsedResponse = JSON.parse(response);
       const { status, message } = parsedResponse;
-      console.log("@@ parsedResponse", parsedResponse);
+
       if (status === "success") {
-        console.log("@@ inside success if");
         submitBtn
           .attr("disabled", false)
           .removeClass("btn-primary")
@@ -40,14 +39,13 @@ $("#login-form").submit((e) => {
         }, 1000);
       }
       if (status === "error") {
-        console.log("eror if", alertTextComponent);
         alertTextComponent
           .removeClass("hide")
           .addClass("show")
           .html(`<i class="fa-solid fa-triangle-exclamation"></i> ${message}`);
         submitBtn.attr("disabled", false).html(defaultBtnText);
+        form[0].reset();
       }
     },
   });
-  console.log("@@ data", data, form);
 });
