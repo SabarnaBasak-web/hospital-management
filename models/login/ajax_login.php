@@ -1,12 +1,15 @@
 <?php
 session_start();
-
-
 require_once __DIR__ . '/../connection_string.php';
 
 $username = mysqli_real_escape_string($dbcon, $_POST['username']);
 $password = mysqli_real_escape_string($dbcon, $_POST['password']);
 
+
+if (empty($username) || empty($password)) {
+    echo json_encode(['status' => 'error', 'message' => "Username or password cannot be empty"]);
+    exit;
+}
 
 $sql = "SELECT * FROM user_login ulogin JOIN user usr JOIN user_role urole ON ulogin.user_id = usr.id AND usr.user_type = urole.id WHERE ulogin.username='{$username}' AND ulogin.password = '{$password}'";
 
@@ -38,7 +41,6 @@ $_SESSION['name'] = $name;
 $_SESSION['role'] = $role;
 
 echo json_encode(['status' => "success", "message" => "Success!"]);
-
 
 
 mysqli_close($dbcon);
