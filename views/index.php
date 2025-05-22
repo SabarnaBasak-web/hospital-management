@@ -34,7 +34,7 @@
                      <form id="login-form" name="login-form">
                          <div class="mb-3">
                              <label for="username" class="form-label">Username</label>
-                             <input type="text" name="username" class="form-control" id="username" placeholder="johndoe" required />
+                             <input type="text" name="username" class="form-control" id="username" placeholder="user name" required />
                          </div>
                          <div class="mb-3">
                              <label for="password" class="form-label">Password</label>
