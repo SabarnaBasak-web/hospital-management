@@ -14,19 +14,19 @@ $all_roles = getUserRoles();
             </div>
         </div>
         <div class="row mb-3">
-            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Username</label>
+            <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
             <div class="col-md-8 col-lg-9">
                 <input name="username" type="text" class="form-control" id="username" placeholder="Johndoe1" required>
             </div>
         </div>
         <div class="row mb-3">
-            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+            <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
             <div class="col-md-8 col-lg-9">
-                <input name="phone" type="text" class="form-control" id="Phone" placeholder="+91 1234567890" required>
+                <input name="phone" type="text" class="form-control" id="phone" placeholder="+91 1234567890" required>
             </div>
         </div>
         <div class="row mb-3">
-            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Password</label>
+            <label for="password" class="col-md-4 col-lg-3 col-form-label">Password</label>
             <div class="col-md-8 col-lg-9">
                 <?php $Generator = "abcd12345";
                 ?>
