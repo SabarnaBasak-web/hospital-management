@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_URI'] == base_url()) {
 }
 
 $page_title = [
-    'index' => 'Login Admin | ' . project_name(),
+    'login' => 'Login Admin | ' . project_name(),
     'dashboard' => 'Dashboard | ' . project_name(),
     'manage-profile' => 'Manage Profile | ' . project_name(),
 
