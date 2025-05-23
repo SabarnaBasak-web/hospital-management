@@ -6,25 +6,38 @@ $all_roles = getUserRoles();
 ?>
 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
     <!-- Profile Edit Form -->
-    <form id="add-staff" name="add-staff">
+    <form id="add_staff_form" name="add_staff_form">
         <div class="row mb-3">
             <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
             <div class="col-md-8 col-lg-9">
                 <input name="fullName" type="text" class="form-control" id="fullName" placeholder="John Doe" required>
             </div>
         </div>
-
         <div class="row mb-3">
-            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+            <label for="username" class="col-md-4 col-lg-3 col-form-label">Username</label>
             <div class="col-md-8 col-lg-9">
-                <input name="phone" type="text" class="form-control" id="Phone" placeholder="+91 1234567890" required>
+                <input name="username" type="text" class="form-control" id="username" placeholder="Johndoe1" required>
             </div>
         </div>
+        <div class="row mb-3">
+            <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+            <div class="col-md-8 col-lg-9">
+                <input name="phone" type="text" class="form-control" id="phone" placeholder="+91 1234567890" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="password" class="col-md-4 col-lg-3 col-form-label">Password</label>
+            <div class="col-md-8 col-lg-9">
+                <?php $Generator = "abcd12345";
+                ?>
 
+                <input name="password" type="text" class="form-control" id="password" value="<?php echo str_shuffle($Generator); ?>" required readonly>
+            </div>
+        </div>
         <div class="row mb-3">
             <label for="Email" class="col-md-4 col-lg-3 col-form-label">User Role</label>
             <div class="col-md-8 col-lg-9">
-                <select class="form-select form-select-sm" aria-label="Small select example">
+                <select class="form-select form-select-sm" aria-label="Small select example" id="role" name="role">
                     <option selected>Open this select menu</option>
                     <?php
                     foreach ($all_roles as $role) {
@@ -40,7 +53,7 @@ $all_roles = getUserRoles();
 
 
         <div class="text-center">
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" id="add-staff-btn" name=add-staff-btn" class="btn btn-primary">Add User</button>
         </div>
     </form><!-- End Profile Edit Form -->
 
