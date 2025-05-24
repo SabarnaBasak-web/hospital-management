@@ -21,3 +21,5 @@ RewriteRule ^manage-profile$ views/manage-profile.php
     RewriteRule ^dashboard-login$ models/login/ajax_login.php
     RewriteRule ^logout$ models/login/logout.php
     RewriteRule ^change-password$ models/dashboard/ajax_change_password.php
+    RewriteRule ^add-staff$ models/dashboard/ajax_add_staff.php
+    RewriteRule ^edit-staff$ models/dashboard/ajax_edit_staff.php
