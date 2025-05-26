@@ -1,4 +1,6 @@
 import { ajaxHandler } from "./common/commonUtils";
+
+let isCreated = false;
 // create new entry
 $("#new-blood-test-form").submit((event) => {
   event.preventDefault();
@@ -43,6 +45,7 @@ $("#new-blood-test-form").submit((event) => {
       submitBtn.attr("disabled", false).html(defaultBtnText);
     }
     form[0].reset();
+    isCreated = true;
     setTimeout(() => {
       alertTextComponent
         .addClass("hide")
@@ -66,5 +69,5 @@ $("#new-blood-test-form").submit((event) => {
 // reload
 // Todo : Need to find a better approach to fix this reload issue
 $("#close-btn").on("click", () => {
-  window.location.reload();
+  if (isCreated) window.location.reload();
 });

@@ -20,7 +20,8 @@ $page_title = [
     'login' => 'Login Admin | ' . project_name(),
     'dashboard' => 'Dashboard | ' . project_name(),
     'manage-profile' => 'Manage Profile | ' . project_name(),
-    'add-blood-tests' => 'Add Blood Test |' . project_name(),
+    'add-blood-tests' => 'Add Blood Test | ' . project_name(),
+    'blood-test-patient' => 'Daily Patients Blood Tests List | ' . project_name(),
 ];
 
 
