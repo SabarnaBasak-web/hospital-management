@@ -48,7 +48,7 @@ function getAllBloodTests()
 {
     global $dbcon;
 
-    $sql = "SELECT bd.name as department_name,bt.* FROM blood_tests bt JOIN blood_department bd on bd.id = bt.department_id";
+    $sql = "SELECT bt.*, bd.name as department_name,bd.id as department_id FROM blood_tests bt JOIN blood_department bd on bd.id = bt.department_id";
 
     $result = mysqli_query($dbcon, $sql);
     $all_blood_tests = mysqli_fetch_all($result, MYSQLI_ASSOC);
