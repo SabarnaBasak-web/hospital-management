@@ -21,3 +21,4 @@
 <script src="https://kit.fontawesome.com/a8ba15086e.js" crossorigin="anonymous"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/logout.js"></script>
+<script type="module" src="assets/js/common/commonUtils.js"></script>

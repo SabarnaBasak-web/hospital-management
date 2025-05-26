@@ -1,17 +1,15 @@
 import { ajaxHandler } from "./common/commonUtils";
-
-// Change password
-$("#change-password-form").submit((event) => {
+// create new entry
+$("#new-blood-test-form").submit((event) => {
   event.preventDefault();
-  const form = $("#change-password-form");
-  const data = form.serialize();
-  const submitBtn = $("#change-pwd-btn");
-  const submitUrl = "change-password";
+  const form = $("#new-blood-test-form");
+  const formData = form.serialize();
+  const submitBtn = $("#saveNewTest");
+  const submitUrl = "new-blood-test-entry";
   const alertTextComponent = $("#custom-alert");
   const beforeSendButton =
     '<i class="fa fa-spinner fa-pulse"></i> Processing...';
-  const defaultBtnText = "Change Password";
-
+  const defaultBtnText = "Save";
   const type = "POST";
 
   const beforeSendHandler = () => {
@@ -25,21 +23,17 @@ $("#change-password-form").submit((event) => {
     const jsonResponse = JSON.parse(response);
     const { status, message } = jsonResponse;
     if (status == "success") {
-      submitBtn
-        .attr("disabled", false)
-        .removeClass("btn-primary")
-        .addClass("btn-success")
-        .html(`${message} <i class="fa fa-check"></i>`);
+      alertTextComponent
+        .removeClass("hide")
+        .removeClass("alert-danger")
+        .addClass("show")
+        .addClass("alert-success")
+        .html(`<i class="fa fa-check"></i> ${message}`);
 
-      setTimeout(() => {
-        submitBtn
-          .removeClass("btn-success")
-          .addClass("btn-primary")
-          .html(defaultBtnText);
-      }, 5000);
-      $.post("logout", function (data) {
-        window.location = "login";
-      });
+      submitBtn
+        .removeClass("btn-success")
+        .addClass("btn-primary")
+        .html(defaultBtnText);
     }
     if (status === "error") {
       alertTextComponent
@@ -49,14 +43,28 @@ $("#change-password-form").submit((event) => {
       submitBtn.attr("disabled", false).html(defaultBtnText);
     }
     form[0].reset();
+    setTimeout(() => {
+      alertTextComponent
+        .addClass("hide")
+        .addClass("alert-danger")
+        .removeClass("show")
+        .removeClass("alert-success")
+        .html("");
+    }, 5000);
   };
 
   ajaxHandler(
     type,
     submitUrl,
-    data,
+    formData,
     beforeSendHandler,
     errorHandler,
     successHandler
   );
+});
+
+// reload
+// Todo : Need to find a better approach to fix this reload issue
+$("#close-btn").on("click", () => {
+  window.location.reload();
 });
