@@ -29,7 +29,7 @@
                 if ($is_super_admin) {
                 ?>
                     <li>
-                        <a href="tables-general.html">
+                        <a href="add-blood-tests">
                             <i class="fa-solid fa-plus "></i><span>Add Blood test</span>
                         </a>
                     </li>

@@ -162,7 +162,7 @@ include_once __DIR__ . '/../controllers/page-controller.php';
 
   <?php include_once __DIR__ . '/../includes/dashboard-footer.php' ?>
   <!-- Template Main JS File -->
-  <script src="assets/js/manageProfile.js"></script>
+  <script type="module" src="assets/js/manageProfile.js"></script>
 
 
 
