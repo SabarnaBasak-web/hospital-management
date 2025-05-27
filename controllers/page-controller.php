@@ -20,18 +20,7 @@ $page_title = [
     'login' => 'Login Admin | ' . project_name(),
     'dashboard' => 'Dashboard | ' . project_name(),
     'manage-profile' => 'Manage Profile | ' . project_name(),
-
-    // // ADMIN MODULE
-    // 'admin-dashboard'                         => 'Dashboard | ' . project_name(),
-    // 'admin-add-seller'                        => 'Add Seller | ' . project_name(),
-    // 'admin-registered-seller'                 => 'Registered Sellers | ' . project_name(),
-    // 'admin-new-product'                       => 'Requesr for product registrations | ' . project_name(),
-    // 'admin-add-category-and-sub-category'     => 'Add Category And Sub-category | ' . project_name(),
-    // 'admin-add-colors-and-sizes'              => 'Add Color And Size | ' . project_name(),
-    // 'admin-home-page-setup'                   => 'Home Page Setup | ' . project_name(),
-    // 'admin-about-page-setup'                  => 'About Page Setup | ' . project_name(),
-    // 'admin-contact-page-setup'                => 'Contact Page Setup | ' . project_name(),
-
+    'add-blood-tests' => 'Add Blood Test |' . project_name(),
 ];
 
 

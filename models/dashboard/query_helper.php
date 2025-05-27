@@ -29,3 +29,29 @@ function getUserRoles()
 
     return $all_roles;
 }
+
+
+function getBloodDepartments()
+{
+    global $dbcon;
+
+    $sql = "SELECT * FROM blood_department";
+
+    $result = mysqli_query($dbcon, $sql);
+    $all_blood_departments = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $all_blood_departments;
+}
+
+
+function getAllBloodTests()
+{
+    global $dbcon;
+
+    $sql = "SELECT bd.name as department_name,bt.* FROM blood_tests bt JOIN blood_department bd on bd.id = bt.department_id";
+
+    $result = mysqli_query($dbcon, $sql);
+    $all_blood_tests = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $all_blood_tests;
+}
