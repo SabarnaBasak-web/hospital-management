@@ -1,3 +1,5 @@
+import { ajaxHandler } from "./common/commonUtils";
+
 // Change password
 $("#change-password-form").submit((event) => {
   event.preventDefault();
@@ -10,46 +12,53 @@ $("#change-password-form").submit((event) => {
     '<i class="fa fa-spinner fa-pulse"></i> Processing...';
   const defaultBtnText = "Change Password";
 
-  $.ajax({
-    type: "POST",
-    url: submitUrl,
-    data: data,
-    beforeSend: function () {
-      submitBtn.attr("disabled", true).html(beforeSendButton);
-    },
-    error: function (xhr) {
-      submitBtn.attr("disabled", false).html(defaultBtnText);
-    },
-    success: function (response) {
-      const jsonResponse = JSON.parse(response);
-      const { status, message } = jsonResponse;
-      if (status == "success") {
-        submitBtn
-          .attr("disabled", false)
-          .removeClass("btn-primary")
-          .addClass("btn-success")
-          .html(`${message} <i class="fa fa-check"></i>`);
+  const type = "POST";
 
-        setTimeout(() => {
-          submitBtn
-            .removeClass("btn-success")
-            .addClass("btn-primary")
-            .html(defaultBtnText);
-        }, 5000);
-        $.post("logout", function (data) {
-          window.location = "login";
-        });
-      }
-      if (status === "error") {
-        alertTextComponent
-          .removeClass("hide")
-          .addClass("show")
-          .html(`<i class="fa-solid fa-triangle-exclamation"></i> ${message}`);
-        submitBtn.attr("disabled", false).html(defaultBtnText);
-      }
-      form[0].reset();
-    },
-  });
+  const beforeSendHandler = () => {
+    submitBtn.attr("disabled", true).html(beforeSendButton);
+  };
+  const errorHandler = (xhr) => {
+    submitBtn.attr("disabled", false).html(defaultBtnText);
+  };
+
+  const successHandler = (response) => {
+    const jsonResponse = JSON.parse(response);
+    const { status, message } = jsonResponse;
+    if (status == "success") {
+      submitBtn
+        .attr("disabled", false)
+        .removeClass("btn-primary")
+        .addClass("btn-success")
+        .html(`${message} <i class="fa fa-check"></i>`);
+
+      setTimeout(() => {
+        submitBtn
+          .removeClass("btn-success")
+          .addClass("btn-primary")
+          .html(defaultBtnText);
+      }, 5000);
+      $.post("logout", function (data) {
+        window.location = "login";
+      });
+    }
+    if (status === "error") {
+      alertTextComponent
+        .removeClass("hide")
+        .addClass("show")
+        .html(`<i class="fa-solid fa-triangle-exclamation"></i> ${message}`);
+      submitBtn.attr("disabled", false).html(defaultBtnText);
+    }
+    form[0].reset();
+  };
+
+  ajaxHandler(
+    type,
+    submitUrl,
+    data,
+    beforeSendHandler,
+    errorHandler,
+    successHandler
+  );
 });
 // end change-password-form
 
