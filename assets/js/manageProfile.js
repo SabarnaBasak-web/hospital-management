@@ -1,4 +1,4 @@
-import { ajaxHandler } from "./common/commonUtils";
+import { ajaxHandler } from "./common/commonUtils.js";
 
 // Change password
 $("#change-password-form").submit((event) => {
