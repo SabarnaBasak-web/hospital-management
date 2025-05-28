@@ -22,7 +22,7 @@ $all_roles = getUserRoles();
         <div class="row mb-3">
             <label for="phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
             <div class="col-md-8 col-lg-9">
-                <input name="phone" type="text" class="form-control" id="phone" placeholder="+91 1234567890" required>
+                <input name="phone" type="text" class="form-control" id="phone" maxlength="10" pattern="\d{10}" placeholder="+91 1234567890" required>
             </div>
         </div>
         <div class="row mb-3">
