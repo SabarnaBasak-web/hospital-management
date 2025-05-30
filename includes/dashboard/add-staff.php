@@ -5,6 +5,7 @@ $all_roles = getUserRoles();
 
 ?>
 <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+    <div class="alert alert-success hide" role="alert" id="add-staff-alert"></div>
     <!-- Profile Edit Form -->
     <form id="add_staff_form" name="add_staff_form">
         <div class="row mb-3">
@@ -28,7 +29,7 @@ $all_roles = getUserRoles();
         <div class="row mb-3">
             <label for="password" class="col-md-4 col-lg-3 col-form-label">Password</label>
             <div class="col-md-8 col-lg-9">
-                <?php $Generator = "abcd12345";
+                <?php $Generator = "12345a";
                 ?>
 
                 <input name="password" type="text" class="form-control" id="password" value="<?php echo str_shuffle($Generator); ?>" required readonly>

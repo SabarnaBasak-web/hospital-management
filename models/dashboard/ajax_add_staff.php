@@ -32,7 +32,15 @@ if ($new_id > 0) {
     $sql =  "INSERT INTO user_login(`username`, `password`, `user_id`) VALUES ('{$username}','{$hashed_password}',{$new_id})";
     $result = mysqli_query($dbcon, $sql);
 
-    echo json_encode(['status' => $result ? 'success' : 'error', 'message' => $result ? 'New staff added successfully' : 'Something went wrong while adding new staff']);
+    echo json_encode([
+        'status' => $result ? 'success' : 'error',
+        'message' => $result
+            ? "New staff added successfully.<br>Username= $username  & password = $password "
+            : 'Something went wrong while adding new staff'
+    ]);
+
+
+    // echo json_encode(['status' => $result ? 'success' : 'error', 'message' => $result ? 'New staff added successfully.<br>password'$password  : 'Something went wrong while adding new staff']);
 } else {
     echo json_encode(['status' => "error", "message" => "error occurred while adding new user credentials"]);
 }

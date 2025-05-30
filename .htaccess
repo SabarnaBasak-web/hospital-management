@@ -24,3 +24,4 @@ RewriteRule ^add-blood-tests$ views/add-blood-tests.php
     RewriteRule ^change-password$ models/dashboard/ajax_change_password.php
     RewriteRule ^add-staff$ models/dashboard/ajax_add_staff.php
     RewriteRule ^new-blood-test-entry$ models/dashboard/ajax_new_blood_test.php
+    RewriteRule ^edit-staff$ models/dashboard/ajax_edit_staff.php
