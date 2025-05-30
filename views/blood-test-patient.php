@@ -14,8 +14,12 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
 
 <body>
 
-    <?php include_once __DIR__ . '/../includes/dashboard-navbar.php' ?>
-    <?php include_once __DIR__ . '/../includes/dashboard-sidebar.php' ?>
+    <?php
+    include_once __DIR__ . '/../includes/dashboard-navbar.php';
+    include_once __DIR__ . '/../includes/dashboard-sidebar.php';
+
+    $all_patients_list = getAllPatientsEntriesByDate();
+    ?>
 
     <main id="main" class="main">
         <!-- Title -->
@@ -33,13 +37,15 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
             <div class="row">
 
                 <div class="col-lg-12">
-                    <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addNewBloodTest">
+                    <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addPatientBloodTest">
                         <i class="fa-solid fa-hospital-user"></i> Add today's patients list
                     </button>
                 </div>
             </div>
         </section>
-        <?php include_once __DIR__ . '/../includes/dashboard/modal/add-new-blood-test.php' ?>
+        <?php include_once __DIR__ . '/../includes/dashboard/modal/new-patient-blood-test.php' ?>
+
+
         <!-- Page Table -->
         <section class="section pt-3">
             <div class="row">
@@ -52,17 +58,21 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                             <table class="table datatable">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Test Name</th>
-                                        <th>Test Code</th>
-                                        <th>Code</th>
-                                        <th>Department</th>
-                                        <th>Price_rate</th>
+                                        <th>Sr No.</th>
+                                        <th>Ticket Number</th>
+                                        <th>Blood Test</th>
+                                        <th>Category</th>
+                                        <th>Price(&#x20B9;) </th>
+                                        <th>Amount Paid(&#x20B9;) </th>
+                                        <th>Amount Due(&#x20B9;) </th>
+                                        <th>Discount</th>
+                                        <th>Status</th>
+                                        <th>Payment Mode</th>
                                         <?php
                                         if ($is_super_admin) {
                                         ?>
-                                            <th>Sales Rate</th>
-                                            <th>Payment</th>
+                                            <th>Lab Payment</th>
+                                            <th>MRP(&#x20B9;)</th>
                                         <?php
                                         }
                                         ?>
@@ -71,17 +81,25 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                 </thead>
                                 <tbody>
                                     <?php
-                                    foreach ($all_blood_tests as $field => $field_value) {
+                                    foreach ($all_patients_list as $field => $field_value) {
                                     ?>
                                         <tr>
                                             <td><?= $field_value['id'] ?></td>
+                                            <td><?= $field_value['ticket_number'] ?></td>
                                             <td><?= $field_value['test_name'] ?></td>
-                                            <td><?= $field_value['test_code'] ?></td>
-                                            <td><?= $field_value['code'] ?></td>
-                                            <td><?= $field_value['department_name'] ?></td>
-                                            <td><?= $field_value['price_rate'] ?></td>
-                                            <td><?= $field_value['sale_rate'] ?></td>
-                                            <td><?= $field_value['payment'] ?></td>
+                                            <td><?= $field_value['category'] ?></td>
+                                            <td><?= $field_value['price'] ?></td>
+                                            <td><?= $field_value['amount_paid'] ?></td>
+                                            <td><?= $field_value['amount_due'] ?></td>
+                                            <td><?= $field_value['discount'] ?> %</td>
+                                            <td><?= $field_value['status'] ?></td>
+                                            <td><?= $field_value['payment_mode'] ?></td>
+                                            <?php if ($is_super_admin) {
+                                            ?>
+                                                <td><?= $field_value['lab_payment'] ?></td>
+                                                <td><?= $field_value['price_rate'] ?></td>
+                                            <?php
+                                            } ?>
                                             <td class="text-center"><button class="btn"><i class="fa-solid fa-pen"></i></button></td>
                                         </tr>
                                     <?php
@@ -102,6 +120,39 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
 
     <?php include_once __DIR__ . '/../includes/dashboard-footer.php' ?>
     <script type="module" src="assets/js/bloodTest.js"></script>
+    <script type="module" src="assets/js/patientEntry.js"></script>
+
+
+    <script defer>
+        const allBloodTests = <?php echo json_encode($all_blood_tests); ?>;
+        const mappedMrp = allBloodTests.reduce((acc, curr) => {
+            const {
+                id,
+                price_rate,
+                sale_rate,
+            } = curr;
+            acc[id] = {
+                mrp: price_rate,
+                saleRate: sale_rate
+            };
+            return acc;
+        }, {});
+
+
+        $("#bloodTest").on("change", function() {
+            const selectedValue = $(this).val();
+            const {
+                mrp,
+                saleRate
+            } = mappedMrp[selectedValue];
+
+            $('#mrp').val(mrp);
+            $('#price').val(saleRate);
+
+            const discountPercent = ((mrp - saleRate) / mrp) * 100;
+            $("#discount").removeAttr('disabled').val(discountPercent)
+        });
+    </script>
 </body>
 
 </html>
