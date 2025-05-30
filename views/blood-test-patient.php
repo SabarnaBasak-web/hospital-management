@@ -17,7 +17,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
     <?php
     include_once __DIR__ . '/../includes/dashboard-navbar.php';
     include_once __DIR__ . '/../includes/dashboard-sidebar.php';
-
+    $all_blood_tests = getAllBloodTests();
     $all_patients_list = getAllPatientsEntriesByDate();
     ?>
 
