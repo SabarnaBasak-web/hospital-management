@@ -68,14 +68,6 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                         <th>Discount</th>
                                         <th>Status</th>
                                         <th>Payment Mode</th>
-                                        <?php
-                                        if ($is_super_admin) {
-                                        ?>
-                                            <th>Lab Payment</th>
-                                            <th>MRP(&#x20B9;)</th>
-                                        <?php
-                                        }
-                                        ?>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -94,12 +86,6 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                             <td><?= $field_value['discount'] ?> %</td>
                                             <td><?= $field_value['status'] ?></td>
                                             <td><?= $field_value['payment_mode'] ?></td>
-                                            <?php if ($is_super_admin) {
-                                            ?>
-                                                <td><?= $field_value['lab_payment'] ?></td>
-                                                <td><?= $field_value['price_rate'] ?></td>
-                                            <?php
-                                            } ?>
                                             <td class="text-center"><button class="btn"><i class="fa-solid fa-pen"></i></button></td>
                                         </tr>
                                     <?php
