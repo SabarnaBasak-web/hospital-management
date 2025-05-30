@@ -1,5 +1,6 @@
 import { ajaxHandler } from "./common/commonUtils";
-// calculate discount
+
+// calculate sale price based on discount provided
 $("#discount").on("blur", () => {
   const originalPrice = $("#mrp").val();
   const discount = $("#discount").val();
@@ -7,6 +8,7 @@ $("#discount").on("blur", () => {
   $("#price").val(`${salePrice.toFixed(0)}`);
 });
 
+// calculate due amount based on amount paid
 $("#amountPaid").on("blur", () => {
   const paidAmount = $("#amountPaid").val();
   const price = $("#price").val();
