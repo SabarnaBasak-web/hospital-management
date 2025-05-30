@@ -1,19 +1,23 @@
 import { ajaxHandler } from "./common/commonUtils";
 
+const updatePendingAmount = () => {
+  const paidAmount = $("#amountPaid").val();
+  const price = $("#price").val();
+  const pendingAmt = price - paidAmount;
+  $("#dueAmount").val(pendingAmt);
+};
 // calculate sale price based on discount provided
 $("#discount").on("blur", () => {
   const originalPrice = $("#mrp").val();
   const discount = $("#discount").val();
   const salePrice = originalPrice - (discount / 100) * originalPrice;
   $("#price").val(`${salePrice.toFixed(0)}`);
+  updatePendingAmount();
 });
 
 // calculate due amount based on amount paid
 $("#amountPaid").on("blur", () => {
-  const paidAmount = $("#amountPaid").val();
-  const price = $("#price").val();
-  const pendingAmt = price - paidAmount;
-  $("#dueAmount").val(pendingAmt);
+  updatePendingAmount();
 });
 
 $("#new-patient-blood-test-form").submit((e) => {
