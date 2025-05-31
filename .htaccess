@@ -16,7 +16,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^login$ views/index.php 
 RewriteRule ^dashboard$ views/dashboard.php 
 RewriteRule ^manage-profile$ views/manage-profile.php
-RewriteRule ^add-blood-tests$ views/add-blood-tests.php
+RewriteRule ^blood-tests$ views/blood-tests.php
 RewriteRule ^blood-test-patient$ views/blood-test-patient.php
 
 
@@ -26,4 +26,6 @@ RewriteRule ^blood-test-patient$ views/blood-test-patient.php
     RewriteRule ^change-password$ models/dashboard/ajax_change_password.php
     RewriteRule ^new-blood-test-entry$ models/dashboard/ajax_new_blood_test.php
     RewriteRule ^patient-entry$ models/dashboard/ajax_new_patient_entry.php
+    RewriteRule ^get-blood-tests-list$ models/dashboard/ajax_load_blood_tests.php
+
 

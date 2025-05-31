@@ -17,11 +17,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
     <?php include_once __DIR__ . '/../includes/dashboard-navbar.php' ?>
     <?php include_once __DIR__ . '/../includes/dashboard-sidebar.php' ?>
 
-    <?php
-    $is_super_admin = isSuperAdmin();
-    $all_blood_tests = getAllBloodTests();
 
-    ?>
     <main id="main" class="main">
         <!-- Title -->
         <div class="pagetitle">
@@ -54,7 +50,12 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                         <div class="card-body">
                             <h5 class="card-title">All blood tests</h5>
                             <!-- Table with stripped rows -->
-                            <table class="table datatable">
+                            <div class="d-flex justify-content-center align-items-center" id="loader">
+                                <div class="spinner-border text-primary hide" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                            <table class="table datatable" id="blood-test-table">
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -75,29 +76,9 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    foreach ($all_blood_tests as $field => $field_value) {
-
-                                    ?>
-                                        <tr>
-                                            <td><?= $field_value['id'] ?></td>
-                                            <td><?= $field_value['test_name'] ?></td>
-                                            <td><?= $field_value['test_code'] ?></td>
-                                            <td><?= $field_value['code'] ?></td>
-                                            <td><?= $field_value['department_name'] ?></td>
-                                            <td><?= $field_value['price_rate'] ?></td>
-                                            <td><?= $field_value['sale_rate'] ?></td>
-                                            <td><?= $field_value['payment'] ?></td>
-                                            <td class="text-center"><button class="btn"><i class="fa-solid fa-pen"></i></button></td>
-                                        </tr>
-                                    <?php
-                                    }
-
-                                    ?>
                                 </tbody>
                             </table>
                             <!-- End Table with stripped rows -->
-
                         </div>
                     </div>
 
