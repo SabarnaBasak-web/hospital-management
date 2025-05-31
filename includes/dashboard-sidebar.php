@@ -42,7 +42,7 @@
                 }
                 ?>
                 <li>
-                    <a href="tables-data.html">
+                    <a href="blood-test-patient">
                         <i class="fa-solid fa-vial-virus "></i><span>Blood test entries</span>
                     </a>
                 </li>
