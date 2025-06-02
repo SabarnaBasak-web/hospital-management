@@ -18,6 +18,8 @@ RewriteRule ^dashboard$ views/dashboard.php
 RewriteRule ^manage-profile$ views/manage-profile.php
 RewriteRule ^blood-tests$ views/blood-tests.php
 RewriteRule ^blood-test-patient$ views/blood-test-patient.php
+RewriteRule ^blood-test-patient$ views/blood-test-patient.php
+
 
 
 # MODELS LINK FOR AJAX

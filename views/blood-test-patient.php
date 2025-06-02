@@ -18,7 +18,6 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
     include_once __DIR__ . '/../includes/dashboard-navbar.php';
     include_once __DIR__ . '/../includes/dashboard-sidebar.php';
     $all_blood_tests = getAllBloodTests();
-
     ?>
 
     <main id="main" class="main">
@@ -35,9 +34,8 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
         <!-- End Page Title -->
         <section class="section">
             <div class="row">
-
                 <div class="col-lg-12">
-                    <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addPatientBloodTest">
+                    <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addPatientBloodTest" id="add-patient-entry-btn">
                         <i class="fa-solid fa-hospital-user"></i> Add today's patients list
                     </button>
                 </div>
