@@ -9,8 +9,8 @@ $base_url = base_url();
 $base_url_length = strlen($base_url);
 
 $url = substr($request_uri, $base_url_length);
-$page_name = explode('/', $url)[0]; // index.php | dashboard.php
 
+$page_name = explode('/', $url)[0]; // index.php | dashboard.php
 
 if ($_SERVER['REQUEST_URI'] == base_url()) {
     $page_name = 'index';

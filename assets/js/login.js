@@ -1,3 +1,5 @@
+import { ajaxHandler } from "./common/commonUtils.js";
+
 $("#login-form").submit((e) => {
   e.preventDefault();
 

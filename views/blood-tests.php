@@ -50,11 +50,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                         <div class="card-body">
                             <h5 class="card-title">All blood tests</h5>
                             <!-- Table with stripped rows -->
-                            <div class="d-flex justify-content-center align-items-center" id="loader">
-                                <div class="spinner-border text-primary hide" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                            </div>
+                            <?php include_once __DIR__ . '/../includes/dashboard/loader.php' ?>
                             <table class="table datatable" id="blood-test-table">
                                 <thead>
                                     <tr>
@@ -75,8 +71,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                             <!-- End Table with stripped rows -->
                         </div>

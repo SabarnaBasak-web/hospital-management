@@ -18,7 +18,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
     include_once __DIR__ . '/../includes/dashboard-navbar.php';
     include_once __DIR__ . '/../includes/dashboard-sidebar.php';
     $all_blood_tests = getAllBloodTests();
-    $all_patients_list = getAllPatientsEntriesByDate();
+
     ?>
 
     <main id="main" class="main">
@@ -54,8 +54,9 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Daily Patients List</h5>
+                            <?php include_once __DIR__ . '/../includes/dashboard/loader.php' ?>
                             <!-- Table with stripped rows -->
-                            <table class="table datatable">
+                            <table class="table datatable" id="blood-test-patient-list">
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
@@ -71,27 +72,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <?php
-                                    foreach ($all_patients_list as $field => $field_value) {
-                                    ?>
-                                        <tr>
-                                            <td><?= $field_value['id'] ?></td>
-                                            <td><?= $field_value['ticket_number'] ?></td>
-                                            <td><?= $field_value['test_name'] ?></td>
-                                            <td><?= $field_value['category'] ?></td>
-                                            <td><?= $field_value['price'] ?></td>
-                                            <td><?= $field_value['amount_paid'] ?></td>
-                                            <td><?= $field_value['amount_due'] ?></td>
-                                            <td><?= $field_value['discount'] ?> %</td>
-                                            <td><?= $field_value['status'] ?></td>
-                                            <td><?= $field_value['payment_mode'] ?></td>
-                                            <td class="text-center"><button class="btn"><i class="fa-solid fa-pen"></i></button></td>
-                                        </tr>
-                                    <?php
-                                    }
-                                    ?>
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                             <!-- End Table with stripped rows -->
 

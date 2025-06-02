@@ -52,7 +52,8 @@
          <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
          <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
          <script src="https://kit.fontawesome.com/a8ba15086e.js" crossorigin="anonymous"></script>
-         <script type="text/javascript" src="assets/js/login.js"></script>
+         <script type="module" type="text/javascript" src="assets/js/login.js"></script>
+         <script type="module" type="text/javascript" src="assets/js/common/commonUtils.js"></script>
      </body>
 
      </html>

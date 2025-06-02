@@ -1,4 +1,6 @@
-import { ajaxHandler } from "./common/commonUtils";
+import { ajaxHandler, loadTableContent } from "./common/commonUtils.js";
+
+let isCreated = false;
 
 const updatePendingAmount = () => {
   const paidAmount = $("#amountPaid").val();
@@ -64,7 +66,7 @@ $("#new-patient-blood-test-form").submit((e) => {
       submitBtn.attr("disabled", false).html(defaultBtnText);
     }
     form[0].reset();
-
+    isCreated = true;
     setTimeout(() => {
       alertTextComponent
         .addClass("hide")
@@ -83,4 +85,21 @@ $("#new-patient-blood-test-form").submit((e) => {
     errorHandler,
     successHandler
   );
+});
+
+// reload
+$("#close-btn").on("click", () => {
+  const loader = $("#loader > div");
+  const tableBody = $("#blood-test-patient-list > tbody");
+  const submitUrl = "get-patient-blood-tests-list";
+  if (isCreated) loadTableContent(loader, tableBody, submitUrl);
+  isCreated = false;
+});
+
+// load data
+$(document).ready(() => {
+  const loader = $("#loader > div");
+  const tableBody = $("#blood-test-patient-list > tbody");
+  const submitUrl = "get-patient-blood-tests-list";
+  loadTableContent(loader, tableBody, submitUrl);
 });

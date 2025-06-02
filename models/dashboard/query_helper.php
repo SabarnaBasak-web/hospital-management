@@ -57,11 +57,11 @@ function getAllBloodTests()
 }
 
 
-function getAllPatientsEntriesByDate()
+function getAllPatientsEntries()
 {
     global $dbcon;
 
-    $sql = "SELECT * FROM patient_blood_test pbt JOIN blood_tests bt JOIN user u on pbt.blood_test_id = bt.id and u.id = pbt.created_by and u.id = pbt.modified_by";
+    $sql = "SELECT pbt.*, bt.id AS blood_id, bt.test_name, bt.test_code,bt.code, bt.price_rate,bt.sale_rate, FROM patient_blood_test pbt INNER JOIN blood_tests bt on pbt.blood_test_id = bt.id";
     $result = mysqli_query($dbcon, $sql);
     $all_patient_entries = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
