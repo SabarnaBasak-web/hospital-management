@@ -5,8 +5,6 @@ require_once __DIR__ . '/./query_helper.php';
 $all_blood_tests = getAllBloodTests();
 $all_patients_list = getAllPatientsEntries();
 
-// print_r($all_patients_list);
-// die;
 foreach ($all_patients_list as $field => $field_value) {
     echo "<tr>
         <td>" . $field_value['id'] . "</td>
