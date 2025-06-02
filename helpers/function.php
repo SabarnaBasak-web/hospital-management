@@ -24,5 +24,6 @@ function base_url()
     } else {
         $base_url = $_ENV['BASE_URL'];
     }
+
     return $base_url;
 }

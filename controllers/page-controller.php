@@ -9,8 +9,8 @@ $base_url = base_url();
 $base_url_length = strlen($base_url);
 
 $url = substr($request_uri, $base_url_length);
-$page_name = explode('/', $url)[0]; // index.php | dashboard.php
 
+$page_name = explode('/', $url)[0]; // index.php | dashboard.php
 
 if ($_SERVER['REQUEST_URI'] == base_url()) {
     $page_name = 'index';
@@ -20,7 +20,7 @@ $page_title = [
     'login' => 'Login Admin | ' . project_name(),
     'dashboard' => 'Dashboard | ' . project_name(),
     'manage-profile' => 'Manage Profile | ' . project_name(),
-    'add-blood-tests' => 'Add Blood Test | ' . project_name(),
+    'blood-tests' => 'Blood Tests | ' . project_name(),
     'blood-test-patient' => 'Daily Patients Blood Tests List | ' . project_name(),
 ];
 

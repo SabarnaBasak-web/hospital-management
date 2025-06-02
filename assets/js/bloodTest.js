@@ -1,4 +1,4 @@
-import { ajaxHandler } from "./common/commonUtils";
+import { ajaxHandler, loadTableContent } from "./common/commonUtils.js";
 
 let isCreated = false;
 // create new entry
@@ -67,7 +67,18 @@ $("#new-blood-test-form").submit((event) => {
 });
 
 // reload
-// Todo : Need to find a better approach to fix this reload issue
 $("#close-btn").on("click", () => {
-  if (isCreated) window.location.reload();
+  const loader = $("#loader > div");
+  const tableBody = $("#blood-test-table > tbody");
+  const submitUrl = "get-blood-tests-list";
+  if (isCreated) loadTableContent(loader, tableBody, submitUrl);
+  isCreated = false;
+});
+
+// load data
+$(document).ready(() => {
+  const loader = $("#loader > div");
+  const tableBody = $("#blood-test-table > tbody");
+  const submitUrl = "get-blood-tests-list";
+  loadTableContent(loader, tableBody, submitUrl);
 });

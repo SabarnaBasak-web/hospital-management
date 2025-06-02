@@ -29,8 +29,8 @@
                 if ($is_super_admin) {
                 ?>
                     <li>
-                        <a href="add-blood-tests">
-                            <i class="fa-solid fa-plus "></i><span>Add Blood test</span>
+                        <a href="blood-tests">
+                            <i class="fa-solid fa-plus "></i><span>Blood test</span>
                         </a>
                     </li>
                     <li>
@@ -43,7 +43,7 @@
                 ?>
                 <li>
                     <a href="blood-test-patient">
-                        <i class="fa-solid fa-vial-virus "></i><span>Blood test entries</span>
+                        <i class="fa-solid fa-vial-virus "></i><span>Patient entries</span>
                     </a>
                 </li>
             </ul>
