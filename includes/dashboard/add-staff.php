@@ -6,7 +6,7 @@ $all_roles = getUserRoles();
 $generated_password = generatePassword();
 ?>
 <div class="tab-pane fade profile-edit pt-3" id="add-staff">
-    <div class="alert alert-success hide" role="alert" id="add-staff-alert"></div>
+    <div class="alert alert-success hide" id="add-staff-alert" role="alert"></div>
     <!-- Profile Edit Form -->
     <form id="add_staff_form" name="add_staff_form">
         <div class="row mb-3">

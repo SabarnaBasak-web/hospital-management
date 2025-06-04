@@ -84,7 +84,6 @@ $("#add_staff_form").submit((event) => {
       submitBtn.attr("disabled", false).html(defaultBtnText);
     },
     success: function (response) {
-      // console.log("@2 result", response);
       const jsonResponse = JSON.parse(response);
       const { status, message } = jsonResponse;
       if (status == "success") {

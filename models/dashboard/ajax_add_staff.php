@@ -19,6 +19,7 @@ if (empty($fullname) || empty($username) || empty($phone) || empty($password) ||
 
 
 $sql = "INSERT INTO user(`name`,`phone_number`,`username`,`user_type`,`status`,`created_by`,`modified_by`) VALUES ('{$fullname}','{$phone}','{$username}',$role,1,'{$logged_in_user}','{$logged_in_user}')";
+
 $result = mysqli_query($dbcon, $sql);
 
 if (!$result) {
@@ -31,23 +32,29 @@ $new_id = mysqli_insert_id($dbcon);
 
 if ($new_id > 0) {
 
-    $success_response = '<div class="d-flex align-items-start gap-3">
-        <i class="bi bi-check-circle-fill fs-4 text-success"></i>
-        <div>
-            <h5 class="mb-1">New user created</h5>
-            <p class="mb-0">Username: <strong>' . $username . '</strong><br>
-                Password: <strong>' . $password . '</strong>
-            </p>
+    $success_response = '<div class="d-flex align-items-start justify-content-between">
+        <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-check-circle-fill fs-4 text-success"></i>
+            <div>
+                <h5 class="mb-1">New user created</h5>
+                <p class="mb-0">Username: <strong>' . $username . '</strong><br>
+                    Password: <strong>' . $password . '</strong>
+                </p>
+            </div>
         </div>
-    </div>';
+        <i class="fa fa-close" data-bs-dismiss="alert" aria-label="Close"></i>
+        </div>';
 
-    $error_response = '<div class="d-flex align-items-start gap-3">
-        <i class="bi bi-exclamation-triangle-fill fs-4 text-danger"></i>
-        <div>
-            <h5 class="mb-1">Error</h5>
-            <p class="mb-0">Failed to create user. Please check required fields and try again.</p>
+    $error_response = '<div class="d-flex align-items-start justify-content-between">
+        <div class="d-flex align-items-start gap-3">
+            <i class="bi bi-exclamation-triangle-fill fs-4 text-danger"></i>
+            <div>
+                <h5 class="mb-1">Error</h5>
+                <p class="mb-0">Failed to create user. Please check required fields and try again.</p>
+            </div>
         </div>
-    </div>';
+        <i class="fa fa-close" data-bs-dismiss="alert" aria-label="Close"></i>
+        </div>';
 
     $hashed_password = password_hash($password, PASSWORD_BCRYPT);
 
