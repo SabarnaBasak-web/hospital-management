@@ -4,7 +4,6 @@ $all_staff = getAllStaff();
 ?>
 
 <div class="tab-pane fade pt-3" id="edit-staff">
-
   <div class="card">
     <div class="card-body">
       <table class="datatable">
@@ -38,68 +37,68 @@ $all_staff = getAllStaff();
             </tr>
 
 
-
-
             <!-- Modal for each user -->
             <div class="modal fade" id="myModal-<?= $all_staff_value['user_id'] ?>" tabindex="-1" aria-hidden="true">
               <div class="modal-dialog">
-                <form id="edit_staff_form" name="edit_staff_form">
+                <form id="edit_staff_form-<?= $all_staff_value['user_id'] ?>" name="edit_staff_form-<?= $all_staff_value['user_id'] ?>">
                   <div class="modal-content">
 
                     <div class="modal-header">
-                      <h4 class="modal-title">Profile Details</h4>
+                      <h4 class="modal-title">Update Profile Details</h4>
                       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
                     <div class="modal-body">
                       <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Full Name</div>
-                        <div class="col-lg-9 col-md-8">
-                          <input type="text" name="id" id="id" value="<?= $all_staff_value['user_id'] ?>" />
-                          <input name="full-name" type="text" class="form-control" value="<?= htmlspecialchars($all_staff_value['name']) ?>" required>
-                        </div>
-                      </div>
-                      <br>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Role</div>
-                        <div class="col-lg-9 col-md-8">
-                          <select class="form-select form-select-md" name="edit-staff-role" id="edit-staff-role">
-                            <option selected><?= $all_staff_value['role_name'] ?></option>
-                            <?php foreach ($all_roles as $role) { ?>
-                              <option value="<?= $role['id'] ?>"><?= $role['role_name'] ?></option>
-                            <?php } ?>
-                          </select>
-                        </div>
-                      </div>
-                      <br>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Phone</div>
-                        <div class="col-lg-9 col-md-8">
-                          <input name="phone" type="text" class="form-control" value="<?= htmlspecialchars($all_staff_value['phone_number']) ?>" required>
-                        </div>
-                      </div>
-                      <br>
-                      <div class="row">
-                        <div class="col-lg-3 col-md-4 label">Status</div>
-                        <div class="col-lg-9 col-md-8">
-                          <select class="form-select form-select-md" name="status" id="status">
-                            <option value="1" <?= $all_staff_value['status'] == 1 ? 'selected' : '' ?>>Active</option>
-                            <option value="0" <?= $all_staff_value['status'] == 0 ? 'selected' : '' ?>>Deactive</option>
-                          </select>
+                        <input readonly hidden name="user-id-<?= $all_staff_value['user_id'] ?>" id="user-id-<?= $all_staff_value['user_id'] ?>" value="<?= $all_staff_value['user_id'] ?>" />
+                        <div class="col">
+                          <div class="mb-3">
+                            <label for="full-name--<?= $all_staff_value['user_id'] ?>">Full Name</label>
+                            <input name="full-name--<?= $all_staff_value['user_id'] ?>" id="full-name--<?= $all_staff_value['user_id'] ?>" type="text" class="form-control" value="<?= htmlspecialchars($all_staff_value['name']) ?>" required>
+                          </div>
                         </div>
                       </div>
 
-                      <br>
-                      <div class="text-center">
-                        <button type="submit" id="edit-staff-btn" name=edit-staff-btn" class="btn btn-primary">Update User</button>
+                      <div class="row">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label for="edit-staff-role-<?= $all_staff_value['user_id'] ?>">Role</label>
+                            <select class="form-select form-select-md" name="edit-staff-role-<?= $all_staff_value['user_id'] ?>" id="edit-staff-role-<?= $all_staff_value['user_id'] ?>">
+                              <option selected><?= $all_staff_value['role_name'] ?></option>
+                              <?php foreach ($all_roles as $role) { ?>
+                                <option value="<?= $role['id'] ?>"><?= $role['role_name'] ?></option>
+                              <?php } ?>
+                            </select>
+                          </div>
+                        </div>
                       </div>
+
+                      <div class="row mb-2">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label for="phone-<?= $all_staff_value['user_id'] ?>">Phone</label>
+                            <input name="phone-<?= $all_staff_value['user_id'] ?>" id="phone-<?= $all_staff_value['user_id'] ?>" type="number" class="form-control" value="<?= htmlspecialchars($all_staff_value['phone_number']) ?>" required>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-2">
+                        <div class="col">
+                          <div class="mb-3">
+                            <label for="status-<?= $all_staff_value['user_id'] ?>">Status</label>
+                            <select class="form-select form-select-md" name="status-<?= $all_staff_value['user_id'] ?>" id="status-<?= $all_staff_value['user_id'] ?>">
+                              <option value="1" <?= $all_staff_value['status'] == 1 ? 'selected' : '' ?>>Active</option>
+                              <option value="0" <?= $all_staff_value['status'] == 0 ? 'selected' : '' ?>>Deactive</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
-
                     <div class="modal-footer">
+                      <button type="submit" id="edit-staff-btn-<?= $all_staff_value['user_id'] ?>" name="edit-staff-btn-<?= $all_staff_value['user_id'] ?>" class="btn btn-primary">Update User</button>
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                     </div>
-
-                  </div>
                 </form>
               </div>
             </div>
@@ -109,6 +108,6 @@ $all_staff = getAllStaff();
       </table>
     </div>
   </div>
+</div>
 
-
-  <!--The Modal end modal  -->
+<!--The Modal end modal  -->
