@@ -1,6 +1,7 @@
 <?php
 include_once __DIR__ . '/../models/session_check.php';
 include_once __DIR__ . '/../controllers/page-controller.php';
+include_once __DIR__ . '/../helpers/util.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +14,11 @@ include_once __DIR__ . '/../controllers/page-controller.php';
 
 <body>
 
-  <?php include_once __DIR__ . '/../includes/dashboard-navbar.php' ?>
-  <?php include_once __DIR__ . '/../includes/dashboard-sidebar.php' ?>
+  <?php
+  include_once __DIR__ . '/../includes/dashboard-navbar.php';
+  include_once __DIR__ . '/../includes/dashboard-sidebar.php';
+  $is_super_admin = isSuperAdmin();
+  ?>
   <main id="main" class="main">
 
     <div class="pagetitle">
@@ -54,13 +58,13 @@ include_once __DIR__ . '/../controllers/page-controller.php';
                 <li class="nav-item">
                   <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                 </li>
-                <?php if ($_SESSION['role'] == 'Super Admin') { ?>
+                <?php if ($is_super_admin) { ?>
                   <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Add Staff</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#add-staff">Add Staff</button>
                   </li>
 
                   <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Edit Staff</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#edit-staff">Edit Staff</button>
                   </li>
                 <?php } ?>
 
@@ -73,43 +77,7 @@ include_once __DIR__ . '/../controllers/page-controller.php';
                 <?php include_once __DIR__ . '/../includes/dashboard/profile-details.php' ?>
                 <?php include_once __DIR__ . '/../includes/dashboard/add-staff.php' ?>
                 <?php include_once __DIR__ . '/../includes/dashboard/edit-staff.php' ?>
-
-
-
-
-
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <div class="alert alert-danger hide" role="alert" id="custom-alert"></div>
-                  <!-- Change Password Form -->
-                  <form id="change-password-form" name="change-password-form">
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="currentPassword" type="password" class="form-control" id="currentPassword" required>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newPassword" type="password" class="form-control" id="newPassword" required>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewPassword" type="password" class="form-control" id="renewPassword" required>
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button id="change-pwd-btn" type="submit" class="btn btn-primary">Change Password</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-
-                </div>
-
+                <?php include_once __DIR__ . '/../includes/dashboard/change-password.php' ?>
               </div><!-- End Bordered Tabs -->
 
             </div>

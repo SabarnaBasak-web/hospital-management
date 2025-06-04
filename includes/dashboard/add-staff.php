@@ -1,10 +1,11 @@
 <?php
 include_once __DIR__ . '/../../models/dashboard/query_helper.php';
+include_once __DIR__ . '/../../helpers/util.php';
 
 $all_roles = getUserRoles();
-
+$generated_password = generatePassword();
 ?>
-<div class="tab-pane fade profile-edit pt-3" id="profile-edit">
+<div class="tab-pane fade profile-edit pt-3" id="add-staff">
     <div class="alert alert-success hide" role="alert" id="add-staff-alert"></div>
     <!-- Profile Edit Form -->
     <form id="add_staff_form" name="add_staff_form">
@@ -29,16 +30,14 @@ $all_roles = getUserRoles();
         <div class="row mb-3">
             <label for="password" class="col-md-4 col-lg-3 col-form-label">Password</label>
             <div class="col-md-8 col-lg-9">
-                <?php $Generator = "12345a";
-                ?>
 
-                <input name="password" type="text" class="form-control" id="password" value="<?php echo str_shuffle($Generator); ?>" required readonly>
+                <input name="password" type="text" class="form-control" id="password" value="<?php echo $generated_password; ?>" required readonly>
             </div>
         </div>
         <div class="row mb-3">
             <label for="Email" class="col-md-4 col-lg-3 col-form-label">User Role</label>
             <div class="col-md-8 col-lg-9">
-                <select class="form-select form-select-sm" aria-label="Small select example" id="role" name="role">
+                <select class="form-select form-select-sm" aria-label="Small select example" id="add-staff-role" name="add-staff-role">
                     <option selected>Open this select menu</option>
                     <?php
                     foreach ($all_roles as $role) {

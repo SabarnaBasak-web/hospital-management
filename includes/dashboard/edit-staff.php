@@ -3,9 +3,7 @@ include_once __DIR__ . '/../../models/dashboard/query_helper.php';
 $all_staff = getAllStaff();
 ?>
 
-<div class="tab-pane fade pt-3" id="profile-settings">
-
-
+<div class="tab-pane fade pt-3" id="edit-staff">
 
   <div class="card">
     <div class="card-body">
@@ -65,7 +63,7 @@ $all_staff = getAllStaff();
                       <div class="row">
                         <div class="col-lg-3 col-md-4 label">Role</div>
                         <div class="col-lg-9 col-md-8">
-                          <select class="form-select form-select-sm" name="role" id="role">
+                          <select class="form-select form-select-md" name="edit-staff-role" id="edit-staff-role">
                             <option selected><?= $all_staff_value['role_name'] ?></option>
                             <?php foreach ($all_roles as $role) { ?>
                               <option value="<?= $role['id'] ?>"><?= $role['role_name'] ?></option>
@@ -84,7 +82,7 @@ $all_staff = getAllStaff();
                       <div class="row">
                         <div class="col-lg-3 col-md-4 label">Status</div>
                         <div class="col-lg-9 col-md-8">
-                          <select class="form-select form-select-sm" name="status" id="status">
+                          <select class="form-select form-select-md" name="status" id="status">
                             <option value="1" <?= $all_staff_value['status'] == 1 ? 'selected' : '' ?>>Active</option>
                             <option value="0" <?= $all_staff_value['status'] == 0 ? 'selected' : '' ?>>Deactive</option>
                           </select>
@@ -114,6 +112,3 @@ $all_staff = getAllStaff();
 
 
   <!--The Modal end modal  -->
-
-
-  <!-- include_once __DIR__ . ' '/modal/edit-staff-modal.php' ?> -->

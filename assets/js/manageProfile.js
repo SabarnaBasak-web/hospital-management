@@ -84,36 +84,31 @@ $("#add_staff_form").submit((event) => {
       submitBtn.attr("disabled", false).html(defaultBtnText);
     },
     success: function (response) {
+      // console.log("@2 result", response);
       const jsonResponse = JSON.parse(response);
-      console.log(jsonResponse);
       const { status, message } = jsonResponse;
       if (status == "success") {
         submitBtn
           .attr("disabled", false)
           .removeClass("btn-primary")
           .addClass("btn-success")
-          .html(` <i class="fa fa-check"></i>`);
-
-        //alert(message);
-        // alert(JSON.stringify(`${message}'));
+          .html(`<i class="fa fa-check"></i> Success!`);
+        alertTextComponent.removeClass("hide").addClass("show").html(message);
 
         setTimeout(() => {
           submitBtn
             .removeClass("btn-success")
             .addClass("btn-primary")
             .html(defaultBtnText);
-
-          alertTextComponent
-            .removeClass("hide")
-            .addClass("show")
-            .html(`<i class="fa-solid  fa-thumbs-up"></i> ${message}`);
         }, 5000);
       }
       if (status === "error") {
         alertTextComponent
           .removeClass("hide")
           .addClass("show")
-          .html(`<i class="fa-solid fa-triangle-exclamation"></i> ${message}`);
+          .removeClass("alert-success")
+          .addClass("alert-danger")
+          .html(message);
         submitBtn.attr("disabled", false).html(defaultBtnText);
       }
       form[0].reset();

@@ -1,14 +1,35 @@
 import { ajaxHandler, loadTableContent } from "./common/commonUtils.js";
 
 let isCreated = false;
-// create new entry
-$("#new-blood-test-form").submit((event) => {
-  event.preventDefault();
-  const form = $("#new-blood-test-form");
+
+const updatePendingAmount = () => {
+  const paidAmount = $("#amountPaid").val();
+  const price = $("#price").val();
+  const pendingAmt = price - paidAmount;
+  $("#dueAmount").val(pendingAmt);
+};
+// calculate sale price based on discount provided
+$("#discount").on("blur", () => {
+  const originalPrice = $("#mrp").val();
+  const discount = $("#discount").val();
+  const salePrice = originalPrice - (discount / 100) * originalPrice;
+  $("#price").val(`${salePrice.toFixed(0)}`);
+  updatePendingAmount();
+});
+
+// calculate due amount based on amount paid
+$("#amountPaid").on("blur", () => {
+  updatePendingAmount();
+});
+
+$("#new-patient-blood-test-form").submit((e) => {
+  e.preventDefault();
+
+  const form = $("#new-patient-blood-test-form");
   const formData = form.serialize();
-  const submitBtn = $("#saveNewTest");
-  const submitUrl = "new-blood-test-entry";
-  const alertTextComponent = $("#custom-alert");
+  const submitBtn = $("#saveEntryButton");
+  const submitUrl = "patient-entry";
+  const alertTextComponent = $("#new-patient-entry-alert");
   const beforeSendButton =
     '<i class="fa fa-spinner fa-pulse"></i> Processing...';
   const defaultBtnText = "Save";
@@ -69,8 +90,8 @@ $("#new-blood-test-form").submit((event) => {
 // reload
 $("#close-btn").on("click", () => {
   const loader = $("#loader > div");
-  const tableBody = $("#blood-test-table > tbody");
-  const submitUrl = "get-blood-tests-list";
+  const tableBody = $("#blood-test-patient-list > tbody");
+  const submitUrl = "get-patient-blood-tests-list";
   if (isCreated) loadTableContent(loader, tableBody, submitUrl);
   isCreated = false;
 });
@@ -78,7 +99,7 @@ $("#close-btn").on("click", () => {
 // load data
 $(document).ready(() => {
   const loader = $("#loader > div");
-  const tableBody = $("#blood-test-table > tbody");
-  const submitUrl = "get-blood-tests-list";
+  const tableBody = $("#blood-test-patient-list > tbody");
+  const submitUrl = "get-patient-blood-tests-list";
   loadTableContent(loader, tableBody, submitUrl);
 });
