@@ -73,46 +73,51 @@ $("#add_staff_form").submit((event) => {
   const beforeSendButton =
     '<i class="fa fa-spinner fa-pulse"></i> Processing...';
   const defaultBtnText = "Add User";
-  $.ajax({
-    type: "POST",
-    url: submitUrl,
-    data: data,
-    beforeSend: function () {
-      submitBtn.attr("disabled", true).html(beforeSendButton);
-    },
-    error: function (xhr) {
-      submitBtn.attr("disabled", false).html(defaultBtnText);
-    },
-    success: function (response) {
-      const jsonResponse = JSON.parse(response);
-      const { status, message } = jsonResponse;
-      if (status == "success") {
-        submitBtn
-          .attr("disabled", false)
-          .removeClass("btn-primary")
-          .addClass("btn-success")
-          .html(`<i class="fa fa-check"></i> Success!`);
-        alertTextComponent.removeClass("hide").addClass("show").html(message);
 
-        setTimeout(() => {
-          submitBtn
-            .removeClass("btn-success")
-            .addClass("btn-primary")
-            .html(defaultBtnText);
-        }, 5000);
-      }
-      if (status === "error") {
-        alertTextComponent
-          .removeClass("hide")
-          .addClass("show")
-          .removeClass("alert-success")
-          .addClass("alert-danger")
-          .html(message);
-        submitBtn.attr("disabled", false).html(defaultBtnText);
-      }
-      form[0].reset();
-    },
-  });
+  const beforeSend = () => {
+    submitBtn.attr("disabled", true).html(beforeSendButton);
+  };
+  const errorHandler = () => {
+    submitBtn.attr("disabled", false).html(defaultBtnText);
+  };
+  const successHandler = (response) => {
+    const jsonResponse = JSON.parse(response);
+    const { status, message } = jsonResponse;
+    if (status == "success") {
+      submitBtn
+        .attr("disabled", false)
+        .removeClass("btn-primary")
+        .addClass("btn-success")
+        .html(`<i class="fa fa-check"></i> Success!`);
+      alertTextComponent.removeClass("hide").addClass("show").html(message);
+
+      setTimeout(() => {
+        submitBtn
+          .removeClass("btn-success")
+          .addClass("btn-primary")
+          .html(defaultBtnText);
+      }, 5000);
+    }
+    if (status === "error") {
+      alertTextComponent
+        .removeClass("hide")
+        .addClass("show")
+        .removeClass("alert-success")
+        .addClass("alert-danger")
+        .html(message);
+      submitBtn.attr("disabled", false).html(defaultBtnText);
+    }
+    form[0].reset();
+  };
+
+  ajaxHandler(
+    "POST",
+    submitUrl,
+    data,
+    beforeSend,
+    errorHandler,
+    successHandler
+  );
 });
 
 // edit-staff start
@@ -125,52 +130,55 @@ $("#edit_staff_form").submit((event) => {
   const alertTextComponent = $("#edit-staff-alert");
   const beforeSendButton =
     '<i class="fa fa-spinner fa-pulse"></i> Processing...';
-  const defaultBtnText = "Add User";
-  $.ajax({
-    type: "POST",
-    url: submitUrl,
-    data: data,
-    beforeSend: function () {
-      submitBtn.attr("disabled", true).html(beforeSendButton);
-    },
-    error: function (xhr) {
-      submitBtn.attr("disabled", false).html(defaultBtnText);
-    },
-    success: function (response) {
-      console.log(response);
-      const jsonResponse = JSON.parse(response);
-      console.log(jsonResponse);
-      const { status, message } = jsonResponse;
-      if (status == "success") {
+  const defaultBtnText = "Update";
+  const beforeSend = () => {
+    submitBtn.attr("disabled", true).html(beforeSendButton);
+  };
+  const errorHandler = (xhr) => {
+    submitBtn.attr("disabled", false).html(defaultBtnText);
+  };
+  const successHandler = (response) => {
+    const jsonResponse = JSON.parse(response);
+
+    const { status, message } = jsonResponse;
+    if (status == "success") {
+      submitBtn
+        .attr("disabled", false)
+        .removeClass("btn-primary")
+        .addClass("btn-success")
+        .html(`<i class="fa fa-check"></i> Success!`);
+      alertTextComponent
+        .removeClass("hide")
+        .removeClass("alert-danger")
+        .addClass("alert-success")
+        .addClass("show")
+        .html(`<i class="fa fa-check"></i> ${message}`);
+
+      setTimeout(() => {
         submitBtn
-          .attr("disabled", false)
-          .removeClass("btn-primary")
-          .addClass("btn-success")
-          .html(` <i class="fa fa-check"></i>`);
+          .removeClass("btn-success")
+          .addClass("btn-primary")
+          .html(defaultBtnText);
+        $("#edit-staff-modal").modal("hide");
+      }, 10000);
+    }
+    if (status === "error") {
+      alertTextComponent
+        .removeClass("hide")
+        .addClass("show")
+        .removeClass("alert-success")
+        .addClass("alert-danger")
+        .html(`<i class="fa-solid fa-triangle-exclamation"></i> ${message}`);
+      submitBtn.attr("disabled", false).html(defaultBtnText);
+    }
+  };
 
-        //alert(message);
-        // alert(JSON.stringify(`${message}'));
-
-        setTimeout(() => {
-          submitBtn
-            .removeClass("btn-success")
-            .addClass("btn-primary")
-            .html(defaultBtnText);
-
-          alertTextComponent
-            .removeClass("hide")
-            .addClass("show")
-            .html(`<i class="fa-solid  fa-thumbs-up"></i> ${message}`);
-        }, 5000);
-      }
-      if (status === "error") {
-        alertTextComponent
-          .removeClass("hide")
-          .addClass("show")
-          .html(`<i class="fa-solid fa-triangle-exclamation"></i> ${message}`);
-        submitBtn.attr("disabled", false).html(defaultBtnText);
-      }
-      form[0].reset();
-    },
-  });
+  ajaxHandler(
+    "POST",
+    submitUrl,
+    data,
+    beforeSend,
+    errorHandler,
+    successHandler
+  );
 });

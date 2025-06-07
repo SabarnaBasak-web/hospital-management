@@ -22,3 +22,17 @@ function generatePassword()
 
     return $password;
 }
+
+
+function getStaffDetailsByStaffId($all_staffs, $staff_id)
+{
+
+    $staff_details = null;
+    foreach ($all_staffs as $staff) {
+        if ($staff['id'] == $staff_id) {
+            $staff_details = $staff;
+            break;
+        }
+    }
+    return $staff_details;
+}

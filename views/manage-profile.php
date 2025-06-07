@@ -17,6 +17,9 @@ include_once __DIR__ . '/../helpers/util.php';
   <?php
   include_once __DIR__ . '/../includes/dashboard-navbar.php';
   include_once __DIR__ . '/../includes/dashboard-sidebar.php';
+
+  include_once __DIR__ . '/../models/dashboard/query_helper.php';
+  $all_staff = getAllStaff();
   $is_super_admin = isSuperAdmin();
   ?>
   <main id="main" class="main">
@@ -93,7 +96,21 @@ include_once __DIR__ . '/../helpers/util.php';
   <!-- Template Main JS File -->
   <script type="module" src="assets/js/manageProfile.js"></script>
 
+  <script type="text/javascript">
+    const allStaffs = <?php echo json_encode($all_staff); ?>;
 
+    $(".action").on("click", function() {
+      const rowId = $(this).data('selected-id');
+      const selectedStaffDetails = allStaffs.find(staff => staff.id === rowId.toString());
+      console.log('@@ selectedStaffDetails', selectedStaffDetails)
+      $('#full-name').val(selectedStaffDetails.name)
+      $('#edit-staff-role').val(selectedStaffDetails['role_id']).trigger('change')
+      $("#edit-staff-phone").val(selectedStaffDetails['phone_number'])
+      $("#status").val(selectedStaffDetails.status).trigger('change')
+      $("#user-id").val(selectedStaffDetails.id)
+      $('#edit-username').val(selectedStaffDetails.username)
+    });
+  </script>
 
 </body>
 
