@@ -56,6 +56,20 @@ function getAllBloodTests()
     return $all_blood_tests;
 }
 
+function getAllStaff()
+{
+    global $dbcon;
+
+
+    $sql = "SELECT u.id as id, u.name, u.phone_number, ur.role_name, ur.id as role_id, ul.username, u.status FROM user u 
+    INNER JOIN user_login ul ON u.id = ul.user_id 
+    INNER JOIN user_role ur ON u.user_type = ur.id ORDER BY u.name ASC";
+
+    $result = mysqli_query($dbcon, $sql);
+    $all_staff = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $all_staff;
+}
 
 function getAllPatientsEntries()
 {

@@ -17,6 +17,9 @@ include_once __DIR__ . '/../helpers/util.php';
   <?php
   include_once __DIR__ . '/../includes/dashboard-navbar.php';
   include_once __DIR__ . '/../includes/dashboard-sidebar.php';
+
+  include_once __DIR__ . '/../models/dashboard/query_helper.php';
+  $all_staff = getAllStaff();
   $is_super_admin = isSuperAdmin();
   ?>
   <main id="main" class="main">
@@ -60,11 +63,11 @@ include_once __DIR__ . '/../helpers/util.php';
                 </li>
                 <?php if ($is_super_admin) { ?>
                   <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Add Staff</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#add-staff">Add Staff</button>
                   </li>
 
                   <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">Edit Staff</button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#edit-staff">Edit Staff</button>
                   </li>
                 <?php } ?>
 
@@ -76,80 +79,8 @@ include_once __DIR__ . '/../helpers/util.php';
               <div class="tab-content pt-2">
                 <?php include_once __DIR__ . '/../includes/dashboard/profile-details.php' ?>
                 <?php include_once __DIR__ . '/../includes/dashboard/add-staff.php' ?>
-
-                <div class="tab-pane fade pt-3" id="profile-settings">
-                  <!-- Settings Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Email Notifications</label>
-                      <div class="col-md-8 col-lg-9">
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="changesMade" checked>
-                          <label class="form-check-label" for="changesMade">
-                            Changes made to your account
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="newProducts" checked>
-                          <label class="form-check-label" for="newProducts">
-                            Information on new products and services
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="proOffers">
-                          <label class="form-check-label" for="proOffers">
-                            Marketing and promo offers
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="securityNotify" checked disabled>
-                          <label class="form-check-label" for="securityNotify">
-                            Security alerts
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </div>
-                  </form><!-- End settings Form -->
-
-                </div>
-
-                <div class="tab-pane fade pt-3" id="profile-change-password">
-                  <div class="alert alert-danger hide" role="alert" id="custom-alert"></div>
-                  <!-- Change Password Form -->
-                  <form id="change-password-form" name="change-password-form">
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="currentPassword" type="password" class="form-control" id="currentPassword" required>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="newPassword" type="password" class="form-control" id="newPassword" required>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="renewPassword" type="password" class="form-control" id="renewPassword" required>
-                      </div>
-                    </div>
-
-                    <div class="text-center">
-                      <button id="change-pwd-btn" type="submit" class="btn btn-primary">Change Password</button>
-                    </div>
-                  </form><!-- End Change Password Form -->
-
-                </div>
-
+                <?php include_once __DIR__ . '/../includes/dashboard/edit-staff.php' ?>
+                <?php include_once __DIR__ . '/../includes/dashboard/change-password.php' ?>
               </div><!-- End Bordered Tabs -->
 
             </div>
@@ -165,7 +96,21 @@ include_once __DIR__ . '/../helpers/util.php';
   <!-- Template Main JS File -->
   <script type="module" src="assets/js/manageProfile.js"></script>
 
+  <script type="text/javascript">
+    const allStaffs = <?php echo json_encode($all_staff); ?>;
 
+    $(".action").on("click", function() {
+      const rowId = $(this).data('selected-id');
+      const selectedStaffDetails = allStaffs.find(staff => staff.id === rowId.toString());
+      console.log('@@ selectedStaffDetails', selectedStaffDetails)
+      $('#full-name').val(selectedStaffDetails.name)
+      $('#edit-staff-role').val(selectedStaffDetails['role_id']).trigger('change')
+      $("#edit-staff-phone").val(selectedStaffDetails['phone_number'])
+      $("#status").val(selectedStaffDetails.status).trigger('change')
+      $("#user-id").val(selectedStaffDetails.id)
+      $('#edit-username').val(selectedStaffDetails.username)
+    });
+  </script>
 
 </body>
 
