@@ -70,6 +70,7 @@ include_once __DIR__ . '/../../../helpers/util.php';
                     <button type="submit" id="edit-staff-btn" name="edit-staff-btn" class="btn btn-primary">Update</button>
                     <button type="button" class="btn btn-danger close" data-bs-dismiss="modal">Close</button>
                 </div>
+            </div>
         </form>
     </div>
 </div>
