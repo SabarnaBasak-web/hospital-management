@@ -28,6 +28,7 @@ RewriteRule ^blood-test-patient$ views/blood-test-patient.php
     RewriteRule ^change-password$ models/dashboard/ajax_change_password.php
     RewriteRule ^add-staff$ models/dashboard/ajax_add_staff.php
     RewriteRule ^new-blood-test-entry$ models/dashboard/ajax_new_blood_test.php
+    RewriteRule ^update-blood-test-entry$ models/dashboard/ajax_update_blood_test.php
     RewriteRule ^edit-staff$ models/dashboard/ajax_edit_staff.php
     RewriteRule ^patient-entry$ models/dashboard/ajax_new_patient_entry.php
     RewriteRule ^update-patient-entry$ models/dashboard/ajax_update_patient_entry.php
