@@ -16,8 +16,9 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
 
     <?php include_once __DIR__ . '/../includes/dashboard-navbar.php' ?>
     <?php include_once __DIR__ . '/../includes/dashboard-sidebar.php' ?>
+    <?php include_once __DIR__ . '/../models/dashboard/query_helper.php' ?>
 
-
+    <?php $all_blood_tests = getAllBloodTests(); ?>
     <main id="main" class="main">
         <!-- Title -->
         <div class="pagetitle">
@@ -32,7 +33,6 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
         <!-- End Page Title -->
         <section class="section">
             <div class="row">
-
                 <div class="col-lg-12">
                     <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#addNewBloodTest">
                         <i class="fa-solid fa-vial"></i> Add new entry
@@ -81,10 +81,43 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
             </div>
         </section>
         <!-- End of Page Table -->
+
+        <?php include_once __DIR__ . '/../includes/dashboard/modal/edit-blood-test.php' ?>
     </main>
 
     <?php include_once __DIR__ . '/../includes/dashboard-footer.php' ?>
     <script type="module" src="assets/js/bloodTest.js"></script>
+
+    <script defer>
+        $(document).on('click', '.edit-BloodTest', function() {
+            const allBloodTests = <?php echo json_encode($all_blood_tests) ?>
+
+            const selectedId = $(this).attr("data-id");
+            console.log("@@ selectedId", allBloodTests, selectedId)
+            const selectedDetails = allBloodTests.find(bloodtest => bloodtest.id === selectedId);
+
+            console.log("selected", selectedDetails)
+            const {
+                id,
+                test_name,
+                test_code,
+                code,
+                price_rate,
+                sale_rate,
+                payment,
+                department_id
+            } = selectedDetails;
+
+            $("#edit-id").val(id)
+            $("#edit-testName").val(test_name)
+            $("#edit-testCode").val(test_code)
+            $("#edit-code").val(code)
+            $("#edit-department").val(department_id)
+            $("#edit-mrp").val(price_rate)
+            $("#edit-saleRate").val(sale_rate)
+            $("#edit-payment").val(payment)
+        });
+    </script>
 </body>
 
 </html>

@@ -14,6 +14,6 @@ foreach ($all_blood_tests as $field => $field_value) {
         <td>" . $field_value['price_rate'] . "</td>
         <td>" . $field_value['sale_rate'] . "</td>
         <td>" . $field_value['payment'] . "</td>
-        <td class=\"text-center\"><button class=\"btn\"><i class=\"fa-solid fa-pen\"></i></button></td>
+        <td class=\"text-center\"><button class=\"btn edit-BloodTest\" data-bs-toggle=\"modal\" data-bs-target=\"#editBloodTest\" data-id=\"" . $field_value['id'] . "\"><i class=\"fa-solid fa-pen\"></i></button></td>
     </tr>";
 }
