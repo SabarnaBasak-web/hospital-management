@@ -47,6 +47,10 @@ $all_blood_departments = getBloodDepartments();
                         <label for="saleRate" class="form-label">Sale Rate</label>
                         <input type="number" name="saleRate" class="form-control" id="saleRate" placeholder="1000" required />
                     </div>
+                    <div class="mb-3">
+                        <label for="payment" class="form-label">Payment</label>
+                        <input type="number" name="payment" class="form-control" id="payment" placeholder="1000" required />
+                    </div>
 
 
                 </div>

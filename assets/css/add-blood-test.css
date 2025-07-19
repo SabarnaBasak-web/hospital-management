@@ -5,3 +5,16 @@
 .hide {
   display: none;
 }
+
+.statusIcon {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.pending {
+  color: #dc3545;
+}
+
+.success {
+  color: #28a745;
+}

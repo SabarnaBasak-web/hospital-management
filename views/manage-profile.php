@@ -102,7 +102,7 @@ include_once __DIR__ . '/../helpers/util.php';
     $(".action").on("click", function() {
       const rowId = $(this).data('selected-id');
       const selectedStaffDetails = allStaffs.find(staff => staff.id === rowId.toString());
-      console.log('@@ selectedStaffDetails', selectedStaffDetails)
+
       $('#full-name').val(selectedStaffDetails.name)
       $('#edit-staff-role').val(selectedStaffDetails['role_id']).trigger('change')
       $("#edit-staff-phone").val(selectedStaffDetails['phone_number'])
