@@ -2,10 +2,17 @@
 session_start();
 require_once __DIR__ . '/../connection_string.php';
 require_once __DIR__ . '/./query_helper.php';
+require_once __DIR__ . '/../../constants/constants.php';
+
 $all_blood_tests = getAllBloodTests();
 $all_patients_list = getAllPatientsEntries();
+$is_super_admin = UserRole::isSuperAdmin();
+
 
 foreach ($all_patients_list as $field => $field_value) {
+    $admin_table_details = $is_super_admin ? "<td>" . $field_value['payment'] . "</td>" : "";
+    $payment_status_icon = "<td>" . ($field_value['amount_due'] == '0' && $is_super_admin ? "<i class=\"fa-solid fa-check success statusIcon\"></i>" : "<i class=\"fa-solid fa-xmark pending statusIcon\"></i>") . "</td>";
+    $action_btn = $field_value['amount_due'] != '0' ? "<td class=\"text-center\"><button class=\"btn edit-icon\"><i class=\"fa-solid fa-pen\" data-bs-toggle=\"modal\" data-bs-target=\"#editPatientBloodTest\" data-id=\"" . $field_value['id'] . "\" ></i></button></td>" : "<td></td>";
     echo "<tr>
         <td>" . $field_value['id'] . "</td>
         <td>" . $field_value['ticket_number'] . "</td>
@@ -17,6 +24,8 @@ foreach ($all_patients_list as $field => $field_value) {
         <td>" . $field_value['discount'] . "</td>
         <td>" . $field_value['status'] . "</td>
         <td>" . $field_value['payment_mode'] . "</td>
-        <td class=\"text-center\"><button class=\"btn\"><i class=\"fa-solid fa-pen\"></i></button></td>
+        $admin_table_details
+        $payment_status_icon
+        $action_btn
     </tr>";
 }

@@ -5,17 +5,9 @@ let isCreated = false;
 const updatePendingAmount = () => {
   const paidAmount = $("#amountPaid").val();
   const price = $("#price").val();
-  const pendingAmt = price - paidAmount;
+  const pendingAmt = +price - +paidAmount;
   $("#dueAmount").val(pendingAmt);
 };
-// calculate sale price based on discount provided
-$("#discount").on("blur", () => {
-  const originalPrice = $("#mrp").val();
-  const discount = $("#discount").val();
-  const salePrice = originalPrice - (discount / 100) * originalPrice;
-  $("#price").val(`${salePrice.toFixed(0)}`);
-  updatePendingAmount();
-});
 
 // calculate due amount based on amount paid
 $("#amountPaid").on("blur", () => {
@@ -87,19 +79,95 @@ $("#new-patient-blood-test-form").submit((e) => {
   );
 });
 
-// reload
-$("#close-btn").on("click", () => {
-  const loader = $("#loader > div");
-  const tableBody = $("#blood-test-patient-list > tbody");
-  const submitUrl = "get-patient-blood-tests-list";
-  if (isCreated) loadTableContent(loader, tableBody, submitUrl);
-  isCreated = false;
-});
-
-// load data
-$(document).ready(() => {
+const loadPatientsList = () => {
   const loader = $("#loader > div");
   const tableBody = $("#blood-test-patient-list > tbody");
   const submitUrl = "get-patient-blood-tests-list";
   loadTableContent(loader, tableBody, submitUrl);
+};
+// load data
+$(document).ready(() => {
+  loadPatientsList();
+});
+
+// reload
+$("#close-btn").on("click", () => {
+  if (isCreated) loadPatientsList();
+  isCreated = false;
+});
+
+// calculate updatedPending amount
+const updatePendingAmountonEdit = () => {
+  const paidAmount = $("#edit-amountPaid").val();
+  const price = $("#edit-price").val();
+  const prevAmount = $("#previous-payment").val();
+  const pendingAmt = +price - (+prevAmount + +paidAmount);
+
+  $("#edit-dueAmount").val(pendingAmt);
+};
+
+$("#edit-amountPaid").on("blur", () => {
+  updatePendingAmountonEdit();
+});
+
+$("#edit-patient-blood-test-form").submit((e) => {
+  e.preventDefault();
+
+  const form = $("#edit-patient-blood-test-form");
+  const formData = form.serialize();
+  const submitBtn = $("#updateButton");
+  const submitUrl = "update-patient-entry";
+  const alertTextComponent = $("#edit-patient-entry-alert");
+  const beforeSendButton =
+    '<i class="fa fa-spinner fa-pulse"></i> Processing...';
+  const defaultBtnText = "Update";
+  const type = "POST";
+
+  const beforeSendHandler = () => {
+    submitBtn.attr("disabled", true).html(beforeSendButton);
+  };
+  const errorHandler = (xhr) => {
+    submitBtn.attr("disabled", false).html(defaultBtnText);
+  };
+
+  const successHandler = (response) => {
+    const jsonResponse = JSON.parse(response);
+    const { status, message } = jsonResponse;
+
+    if (status == "success") {
+      submitBtn
+        .removeClass("btn-success")
+        .addClass("btn-primary")
+        .html(defaultBtnText);
+      form[0].reset();
+      isCreated = true;
+
+      $("#editPatientBloodTest").modal("hide");
+      loadPatientsList();
+    }
+    if (status === "error") {
+      alertTextComponent
+        .removeClass("hide")
+        .addClass("show")
+        .html(`<i class="fa-solid fa-triangle-exclamation"></i> ${message}`);
+      submitBtn.attr("disabled", false).html(defaultBtnText);
+    }
+    setTimeout(() => {
+      alertTextComponent
+        .addClass("hide")
+        .addClass("alert-danger")
+        .removeClass("show")
+        .removeClass("alert-success")
+        .html("");
+    }, 5000);
+  };
+
+  ajaxHandler(
+    type,
+    submitUrl,
+    formData,
+    beforeSendHandler,
+    errorHandler,
+    successHandler
+  );
 });

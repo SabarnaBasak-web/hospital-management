@@ -1,12 +1,13 @@
 <?php
 include_once __DIR__ . '/../models/session_check.php';
+include_once __DIR__ . '/../constants/constants.php';
 
 $PASSWORD_LENGTH = 6;
 
 function isSuperAdmin()
 {
     $curr_user_role =  $_SESSION['role'];
-    return $curr_user_role == 'Super Admin';
+    return $curr_user_role == UserRole::SUPERADMIN;
 }
 
 function generatePassword()

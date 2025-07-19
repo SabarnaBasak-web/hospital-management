@@ -75,7 +75,7 @@ function getAllPatientsEntries()
 {
     global $dbcon;
 
-    $sql = "SELECT pbt.*, bt.id AS blood_id, bt.test_name, bt.test_code,bt.code, bt.price_rate,bt.sale_rate FROM patient_blood_test pbt INNER JOIN blood_tests bt on pbt.blood_test_id = bt.id ORDER BY pbt.created_date DESC";
+    $sql = "SELECT pbt.*, bt.id AS blood_id, bt.test_name, bt.test_code,bt.code, bt.price_rate,bt.sale_rate, bt.payment FROM patient_blood_test pbt INNER JOIN blood_tests bt on pbt.blood_test_id = bt.id ORDER BY pbt.created_date DESC";
     $result = mysqli_query($dbcon, $sql);
 
     $all_patient_entries = mysqli_fetch_all($result, MYSQLI_ASSOC);

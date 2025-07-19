@@ -17,13 +17,17 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
     <?php
     include_once __DIR__ . '/../includes/dashboard-navbar.php';
     include_once __DIR__ . '/../includes/dashboard-sidebar.php';
+    include_once __DIR__ . '/../helpers/util.php';
+
     $all_blood_tests = getAllBloodTests();
+    $all_patients_list = getAllPatientsEntries();
+    $is_super_admin = UserRole::isSuperAdmin();
     ?>
 
     <main id="main" class="main">
         <!-- Title -->
         <div class="pagetitle">
-            <h1>Blood test patients list</h1>
+            <h1>Blood test patients list </h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
@@ -67,6 +71,10 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                         <th>Discount</th>
                                         <th>Status</th>
                                         <th>Payment Mode</th>
+                                        <?php if ($is_super_admin) {
+                                            echo '<th>Lab Payment</th> <th>Payment Status</th>';
+                                        }
+                                        ?>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -81,6 +89,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
             </div>
         </section>
         <!-- End of Page Table -->
+        <?php include_once __DIR__ . '/../includes/dashboard/modal/edit-patient-blood-test.php' ?>
     </main>
 
     <?php include_once __DIR__ . '/../includes/dashboard-footer.php' ?>
@@ -116,6 +125,43 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
 
             const discountPercent = ((mrp - saleRate) / mrp) * 100;
             $("#discount").removeAttr('disabled').val(discountPercent)
+        });
+
+        // Edit button handler using event delegation
+        $(document).on("click", ".edit-icon", function() {
+            const id = $(this).find("i[data-id]").attr("data-id");
+            const allPatientsList = <?php echo json_encode($all_patients_list); ?>
+
+            const foundPatient = allPatientsList.find(patient => patient.id === id)
+
+            if (foundPatient) {
+                const form = $("#edit-patient-blood-test-form");
+                form[0].reset();
+                const {
+                    amount_due,
+                    amount_paid,
+                    category,
+                    discount,
+                    id,
+                    payment_mode,
+                    price,
+                    test_name,
+                    ticket_number,
+                    status
+                } = foundPatient
+                $("#edit-ticketNumber").val(ticket_number);
+                $("#edit-bloodTest").val(test_name)
+                $("#edit-category").val(category);
+                $("#edit-price").val(price);
+                $("#previous-payment").val(amount_paid);
+                $("#edit-dueAmount").val(amount_due);
+                $("#edit-discount").val(discount);
+                $("#edit-paymentMode").val(payment_mode);
+                $('#edit-id').val(id)
+                $('#edit-status').val(status);
+            }
+
+            $('#editPatientBloodTest').modal('show');
         });
     </script>
 </body>
