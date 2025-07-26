@@ -171,3 +171,26 @@ $("#edit-patient-blood-test-form").submit((e) => {
     successHandler
   );
 });
+
+$("#table-search").keypress(function (event) {
+  if ($(this).val().length > 0) {
+    $("#clear-search").css("visibility", "visible");
+  } else {
+    $("#clear-search").css("visibility", "hidden");
+  }
+  if (event.which === 13) {
+    const loader = $("#loader > div");
+    const tableBody = $("#blood-test-patient-list > tbody");
+    const submitUrl = "get-patient-blood-tests-list-by-ticket";
+    const searchedValue = $(this).val();
+
+    const searchedString = { searchedString: searchedValue };
+    loadTableContent(loader, tableBody, submitUrl, searchedString);
+  }
+});
+
+$("#clear-search").on("click", function () {
+  loadPatientsList();
+  $("#table-search").val("");
+  $(this).css("visibility", "hidden");
+});

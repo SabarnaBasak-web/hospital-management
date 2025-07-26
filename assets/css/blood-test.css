@@ -1,0 +1,13 @@
+.datatable-top {
+  display: none;
+}
+
+.noRecordsFound {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 500px;
+  width: 100%;
+  background-color: red;
+}

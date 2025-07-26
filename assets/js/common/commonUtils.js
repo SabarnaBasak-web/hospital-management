@@ -16,7 +16,7 @@ export const ajaxHandler = (
   });
 };
 
-export const loadTableContent = (loader, tableBody, submitUrl) => {
+export const loadTableContent = (loader, tableBody, submitUrl, data = null) => {
   const beforeSendHandler = () => {
     loader.removeClass("hide");
     tableBody.addClass("hide");
@@ -37,7 +37,7 @@ export const loadTableContent = (loader, tableBody, submitUrl) => {
   ajaxHandler(
     "GET",
     submitUrl,
-    null,
+    data ? data : null,
     beforeSendHandler,
     errorHandler,
     onSuccess

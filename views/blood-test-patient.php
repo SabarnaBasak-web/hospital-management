@@ -10,6 +10,8 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
 <head>
     <?php include_once __DIR__ . '/../includes/dashboard-header-link.php' ?>
     <link rel='stylesheet' type='text/css' href="assets/css/add-blood-test.css" />
+    <link rel='stylesheet' type='text/css' href="assets/css/blood-test.css" />
+    <link rel='stylesheet' type='text/css' href="assets/css/table-search.css" />
 </head>
 
 <body>
@@ -59,6 +61,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                             <?php include_once __DIR__ . '/../includes/dashboard/loader.php' ?>
                             <!-- Table with stripped rows -->
                             <table class="table datatable" id="blood-test-patient-list">
+                                <?php include_once __DIR__ . '/../includes/dashboard/table-search-field.php' ?>
                                 <thead>
                                     <tr>
                                         <th>Sr No.</th>
@@ -78,7 +81,9 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+
+                                </tbody>
                             </table>
                             <!-- End Table with stripped rows -->
 

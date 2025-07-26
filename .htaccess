@@ -33,6 +33,8 @@ RewriteRule ^blood-test-patient$ views/blood-test-patient.php
     RewriteRule ^patient-entry$ models/dashboard/ajax_new_patient_entry.php
     RewriteRule ^update-patient-entry$ models/dashboard/ajax_update_patient_entry.php
     RewriteRule ^get-blood-tests-list$ models/dashboard/ajax_load_blood_tests.php
+    RewriteRule ^get-blood-tests-list-by-test-name$ models/dashboard/ajax_load_searched_blood_test.php
     RewriteRule ^get-patient-blood-tests-list$ models/dashboard/ajax_load_patients_list.php
+    RewriteRule ^get-patient-blood-tests-list-by-ticket$ models/dashboard/ajax_load_searched_patients_list.php
 
 
