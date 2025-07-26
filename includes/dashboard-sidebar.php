@@ -34,7 +34,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="tables-general.html">
+                        <a href="404">
                             <i class="fa-solid fa-money-check"></i><span>View Payments</span>
                         </a>
                     </li>
