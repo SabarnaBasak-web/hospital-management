@@ -155,3 +155,27 @@ const loadBloodTestList = () => {
 $(document).ready(() => {
   loadBloodTestList();
 });
+
+$("#table-search").keypress(function (event) {
+  if ($(this).val().length > 0) {
+    $("#clear-search").css("visibility", "visible");
+  } else {
+    $("#clear-search").css("visibility", "hidden");
+  }
+  if (event.which === 13) {
+    const loader = $("#loader > div");
+    const tableBody = $("#blood-test-table > tbody");
+    const submitUrl = "get-blood-tests-list-by-test-name";
+    const searchedValue = $(this).val();
+
+    console.log("@@ table-search", searchedValue);
+    const searchedString = { searchedString: searchedValue };
+    loadTableContent(loader, tableBody, submitUrl, searchedString);
+  }
+});
+
+$("#clear-search").on("click", function () {
+  loadBloodTestList();
+  $("#table-search").val("");
+  $(this).css("visibility", "hidden");
+});

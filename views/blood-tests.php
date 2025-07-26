@@ -10,6 +10,8 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
 <head>
     <?php include_once __DIR__ . '/../includes/dashboard-header-link.php' ?>
     <link rel='stylesheet' type='text/css' href="assets/css/add-blood-test.css" />
+    <link rel='stylesheet' type='text/css' href="assets/css/blood-test.css" />
+    <link rel='stylesheet' type='text/css' href="assets/css/table-search.css" />
 </head>
 
 <body>
@@ -52,6 +54,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                             <!-- Table with stripped rows -->
                             <?php include_once __DIR__ . '/../includes/dashboard/loader.php' ?>
                             <table class="table datatable" id="blood-test-table">
+                                <?php include_once __DIR__ . '/../includes/dashboard/table-search-field.php' ?>
                                 <thead>
                                     <tr>
                                         <th>Id</th>
@@ -93,10 +96,9 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
             const allBloodTests = <?php echo json_encode($all_blood_tests) ?>
 
             const selectedId = $(this).attr("data-id");
-            console.log("@@ selectedId", allBloodTests, selectedId)
+
             const selectedDetails = allBloodTests.find(bloodtest => bloodtest.id === selectedId);
 
-            console.log("selected", selectedDetails)
             const {
                 id,
                 test_name,
