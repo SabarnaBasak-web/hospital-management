@@ -168,7 +168,6 @@ $("#table-search").keypress(function (event) {
     const submitUrl = "get-blood-tests-list-by-test-name";
     const searchedValue = $(this).val();
 
-    console.log("@@ table-search", searchedValue);
     const searchedString = { searchedString: searchedValue };
     loadTableContent(loader, tableBody, submitUrl, searchedString);
   }
