@@ -1,7 +1,10 @@
 Options +FollowSymLinks
 RewriteEngine On
 
+# local
 RewriteBase /hospital-management/
+
+# Production
 # RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-d
