@@ -104,7 +104,7 @@ $("#edit-blood-test-form").submit((event) => {
         .html(defaultBtnText);
 
       $("#editBloodTest").modal("hide");
-      loadBloodTestList();
+      window.location.reload();
     }
     if (status === "error") {
       alertTextComponent

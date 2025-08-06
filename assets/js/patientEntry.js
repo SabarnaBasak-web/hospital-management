@@ -143,7 +143,7 @@ $("#edit-patient-blood-test-form").submit((e) => {
       isCreated = true;
 
       $("#editPatientBloodTest").modal("hide");
-      loadPatientsList();
+      window.location.reload();
     }
     if (status === "error") {
       alertTextComponent

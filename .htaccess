@@ -1,31 +1,28 @@
 Options +FollowSymLinks
 RewriteEngine On
 
-
-# RewriteBase /craftomania/
 RewriteBase /hospital-management/
+# RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+
 <Files .env>
     Order allow,deny
     Deny from all
 </Files>
-
 
 RewriteRule ^login$ views/index.php 
 RewriteRule ^dashboard$ views/dashboard.php 
 RewriteRule ^manage-profile$ views/manage-profile.php
 RewriteRule ^blood-tests$ views/blood-tests.php
 RewriteRule ^blood-test-patient$ views/blood-test-patient.php
-RewriteRule ^blood-test-patient$ views/blood-test-patient.php
-RewriteRule ^blood-test-patient$ views/blood-test-patient.php
 RewriteRule ^404$ views/404.php
 
 
 
 # MODELS LINK FOR AJAX
-    RewriteRule ^dashboard-login$ models/login/ajax_login.php
+    RewriteRule ^dashboard-login$ models/login/ajax_login.php [L,QSA]
     RewriteRule ^logout$ models/login/logout.php
     RewriteRule ^change-password$ models/dashboard/ajax_change_password.php
     RewriteRule ^add-staff$ models/dashboard/ajax_add_staff.php
