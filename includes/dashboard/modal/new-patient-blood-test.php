@@ -25,7 +25,7 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                             <div class="mb-3">
                                 <label for="bloodTest" class="form-label">Blood Test</label>
                                 <select name="bloodTest" id="bloodTest" class="form-select form-select-md" aria-label="blood-test-name" required>
-                                    <option selected>Select Blood Test</option>
+                                    <option value="" selected>Select Blood Test</option>
                                     <?php
                                     foreach ($all_blood_tests as $test) {
                                     ?> <option value=<?= $test['id'] ?>>
@@ -40,10 +40,14 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                     <!-- Row 2 -->
                     <div class="row">
                         <div class="col">
-                            <!-- Category -->
+                            <!-- Payment status -->
                             <div class="mb-3">
-                                <label for="category" class="form-label">Category</label>
-                                <input type="text" name="category" class="form-control" id="category" placeholder="Category" />
+                                <label for="paymentMode" class="form-label">Payment Mode</label>
+                                <select name="paymentMode" id="paymentMode" class="form-select form-select-md" aria-label="blood-test-payment-mode" required>
+                                    <option value="" selected>Select payment</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="UPI">UPI</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col">
@@ -62,6 +66,7 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                             <div class="mb-3">
                                 <label for="amountPaid" class="form-label">Amount Paid</label>
                                 <input type="number" name="amountPaid" class="form-control" id="amountPaid" placeholder="0" required />
+                                <span id="amountPaidError" class="error-message"></span>
                             </div>
                         </div>
                         <div class="col">
@@ -86,8 +91,8 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                             <!-- Status -->
                             <div class="mb-3">
                                 <label for="status" class="form-label">Status</label>
-                                <select name="status" id="status" class="form-select form-select-md" aria-label="blood-test-status">
-                                    <option selected>Select status</option>
+                                <select name="status" id="status" class="form-select form-select-md" aria-label="blood-test-status" required>
+                                    <option value="" selected>Select status</option>
                                     <option value="completed">Completed</option>
                                     <option value="pending">Pending</option>
                                 </select>
@@ -98,15 +103,11 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                     <!-- Row 5 -->
                     <div class="row">
                         <div class="col">
-                            <!-- Payment Mode -->
-                            <div class="mb-3">
-                                <label for="paymentMode" class="form-label">Payment Mode</label>
-                                <select name="paymentMode" id="paymentMode" class="form-select form-select-md" aria-label="blood-test-payment-mode">
-                                    <option selected>Select payment</option>
-                                    <option value="Cash">Cash</option>
-                                    <option value="UPI">UPI</option>
-                                </select>
-                            </div>
+                            <!-- category -->
+                            <!-- <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" name="category" class="form-control" id="category" placeholder="Category" />
+                            </div> -->
                         </div>
                         <!-- hidden Field (MRP) -->
                         <div class="col">

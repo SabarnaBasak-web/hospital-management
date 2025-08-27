@@ -3,10 +3,21 @@ import { ajaxHandler, loadTableContent } from "./common/commonUtils.js";
 let isCreated = false;
 
 const updatePendingAmount = () => {
-  const paidAmount = $("#amountPaid").val();
-  const price = $("#price").val();
-  const pendingAmt = +price - +paidAmount;
-  $("#dueAmount").val(pendingAmt);
+  const paidAmount = parseInt($("#amountPaid").val());
+  const price = parseInt($("#price").val());
+  const errorMessage = $("#amountPaidError");
+  const submitBtn = $("#saveEntryButton");
+
+  if (paidAmount > price) {
+    errorMessage.text("Amount paid cannot exceed the price.");
+    errorMessage.css("display", "block");
+    submitBtn.attr("disabled", true);
+  } else {
+    const pendingAmt = price - paidAmount;
+    $("#dueAmount").val(pendingAmt);
+    errorMessage.text("").css("display", "none");
+    submitBtn.attr("disabled", false);
+  }
 };
 
 // calculate due amount based on amount paid
@@ -98,12 +109,24 @@ $("#close-btn").on("click", () => {
 
 // calculate updatedPending amount
 const updatePendingAmountonEdit = () => {
-  const paidAmount = $("#edit-amountPaid").val();
-  const price = $("#edit-price").val();
-  const prevAmount = $("#previous-payment").val();
-  const pendingAmt = +price - (+prevAmount + +paidAmount);
+  let paidAmount = parseInt($("#edit-amountPaid").val());
+  const price = parseInt($("#edit-price").val());
+  const prevAmount = parseInt($("#previous-payment").val());
+  const dueAmount = parseInt($("#edit-dueAmount").val());
 
-  $("#edit-dueAmount").val(pendingAmt);
+  if (paidAmount > dueAmount) {
+    const errorMessage = $("#edit-amountPaidError");
+    errorMessage.text("Amount paid cannot exceed the due amount.");
+    errorMessage.css("display", "block");
+
+    const submitBtn = $("#updateButton");
+    submitBtn.attr("disabled", true);
+  } else {
+    $("#edit-amountPaidError").text("").css("display", "none");
+    $("#updateButton").attr("disabled", false);
+    const pendingAmt = price - (prevAmount + paidAmount);
+    $("#edit-dueAmount").val(pendingAmt);
+  }
 };
 
 $("#edit-amountPaid").on("blur", () => {
