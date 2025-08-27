@@ -67,12 +67,11 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                         <th>Sr No.</th>
                                         <th>Ticket Number</th>
                                         <th>Blood Test</th>
-                                        <th>Category</th>
                                         <th>Price(&#x20B9;) </th>
                                         <th>Amount Paid(&#x20B9;) </th>
                                         <th>Amount Due(&#x20B9;) </th>
                                         <th>Discount</th>
-                                        <th>Status</th>
+                                        <th>Report status</th>
                                         <th>Payment Mode</th>
                                         <?php if ($is_super_admin) {
                                             echo '<th>Lab Payment</th> <th>Payment Status</th>';
@@ -145,7 +144,6 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                 const {
                     amount_due,
                     amount_paid,
-                    category,
                     discount,
                     id,
                     payment_mode,
@@ -156,7 +154,6 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                 } = foundPatient
                 $("#edit-ticketNumber").val(ticket_number);
                 $("#edit-bloodTest").val(test_name)
-                $("#edit-category").val(category);
                 $("#edit-price").val(price);
                 $("#previous-payment").val(amount_paid);
                 $("#edit-dueAmount").val(amount_due);

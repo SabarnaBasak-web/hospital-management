@@ -33,10 +33,15 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                     <!-- Row 2 -->
                     <div class="row">
                         <div class="col">
-                            <!-- Category -->
+                            <!-- Payment Mode -->
                             <div class="mb-3">
-                                <label for="category" class="form-label">Category</label>
-                                <input type="text" name="edit-category" class="form-control" id="edit-category" placeholder="Category" disabled />
+                                <label for="paymentMode" class="form-label">Payment Mode</label>
+                                <select name="edit-paymentMode" id="edit-paymentMode" class="form-select form-select-md" aria-label="blood-test-payment-mode">
+                                    <option selected>Select payment</option>
+                                    <option value="Cash">Cash</option>
+                                    <option value="UPI">UPI</option>
+                                </select>
+
                             </div>
                         </div>
                         <div class="col">
@@ -52,6 +57,7 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                     <!-- Row 2.5 -->
                     <div class="row">
                         <div class="col">
+                            <!-- Previous Payment -->
                             <div class="mb-3">
                                 <label for="amountPaid" class="form-label">Previous payment</label>
                                 <input type="number" class="form-control" readonly name="previous-payment" id="previous-payment">
@@ -59,21 +65,17 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
 
                         </div>
                         <div class="col">
+                            <!-- Amount Paid -->
                             <div class="mb-3">
-                                <input type="hidden" name="edit-id" id='edit-id' />
+                                <label for="amountPaid" class="form-label">Amount Paid</label>
+                                <input type="number" name="edit-amountPaid" class="form-control" id="edit-amountPaid" placeholder="0" required />
+                                <span id="edit-amountPaidError" class="error-message"></span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Row 3 -->
-                    <div class="row">
-                        <div class="col">
-                            <!-- Amount Paid -->
-                            <div class="mb-3">
-                                <label for="amountPaid" class="form-label">Amount Paid</label>
-                                <input type="number" name="edit-amountPaid" class="form-control" id="edit-amountPaid" placeholder="0" required />
-                            </div>
-                        </div>
+                    <div class=" row">
                         <div class="col">
                             <!-- Due Amount -->
                             <div class="mb-3">
@@ -81,10 +83,6 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                                 <input readonly name="edit-dueAmount" class="form-control" id="edit-dueAmount" />
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Row 4 -->
-                    <div class="row">
                         <div class="col">
                             <!-- Discount -->
                             <div class="mb-3">
@@ -92,10 +90,14 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                                 <input name="edit-discount" class="form-control" id="edit-discount" placeholder="50" required disabled />
                             </div>
                         </div>
+                    </div>
+
+                    <!-- Row 4 -->
+                    <div class="row">
                         <div class="col">
                             <!-- Status -->
                             <div class="mb-3">
-                                <label for="status" class="form-label">Status</label>
+                                <label for="status" class="form-label">Report status</label>
                                 <select name="edit-status" id="edit-status" class="form-select form-select-md" aria-label="blood-test-status">
                                     <option selected>Select status</option>
                                     <option value="completed">Completed</option>
@@ -103,19 +105,21 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                                 </select>
                             </div>
                         </div>
+                        <div class="col">
+
+                        </div>
                     </div>
 
                     <!-- Row 5 -->
                     <div class="row">
                         <div class="col">
-                            <!-- Payment Mode -->
+                            <!-- Category -->
+                            <!-- <div class="mb-3">
+                                <label for="category" class="form-label">Category</label>
+                                <input type="text" name="edit-category" class="form-control" id="edit-category" placeholder="Category" disabled />
+                            </div> -->
                             <div class="mb-3">
-                                <label for="paymentMode" class="form-label">Payment Mode</label>
-                                <select name="edit-paymentMode" id="edit-paymentMode" class="form-select form-select-md" aria-label="blood-test-payment-mode">
-                                    <option selected>Select payment</option>
-                                    <option value="Cash">Cash</option>
-                                    <option value="UPI">UPI</option>
-                                </select>
+                                <input type="hidden" name="edit-id" id='edit-id' />
                             </div>
                         </div>
                         <!-- hidden Field (MRP) -->
@@ -123,6 +127,7 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                             <div class="mb-3">
                                 <input hidden readonly name="mrp" class="form-control" id="mrp" />
                             </div>
+
                         </div>
                     </div>
                 </div>
