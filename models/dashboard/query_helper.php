@@ -107,3 +107,74 @@ function getAllPatientsEntriesByTicketNumber($searched_string)
 
     return $all_patient_entries;
 }
+
+
+function getAllPatientEntriesForCurrentMonth()
+{
+    global $dbcon;
+
+    $curr_year = date("Y");
+    $curr_month = date("m");
+
+    $sql = "SELECT COUNT(*) as total_count 
+            FROM patient_blood_test pbt 
+            WHERE YEAR(pbt.created_date) = ? 
+            AND MONTH(pbt.created_date) = ?";
+
+    $stmt = $dbcon->prepare($sql);
+    $stmt->bind_param("ss", $curr_year, $curr_month);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    return $row['total_count'];
+}
+
+function getCompletedTestsForCurrentMonth()
+{
+    global $dbcon;
+
+    $curr_year = date("Y");
+    $curr_month = date("m");
+
+    $sql = "SELECT COUNT(*) as total_count 
+            FROM patient_blood_test pbt 
+            WHERE pbt.status = 'completed' 
+            AND pbt.amount_due = 0
+            AND YEAR(pbt.created_date) = ? 
+            AND MONTH(pbt.created_date) = ?";
+
+    $stmt = $dbcon->prepare($sql);
+    $stmt->bind_param("ss", $curr_year, $curr_month);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    return $row['total_count'];
+}
+
+function getPendingTestsForCurrentMonth()
+{
+    global $dbcon;
+
+    $curr_year = date("Y");
+    $curr_month = date("m");
+
+    $sql = "SELECT COUNT(*) as total_count 
+            FROM patient_blood_test pbt 
+            WHERE pbt.status = 'pending' 
+            OR pbt.amount_due > 0
+            AND YEAR(pbt.created_date) = ? 
+            AND MONTH(pbt.created_date) = ?";
+
+    $stmt = $dbcon->prepare($sql);
+    $stmt->bind_param("ss", $curr_year, $curr_month);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
+
+    return $row['total_count'];
+}
