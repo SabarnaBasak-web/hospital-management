@@ -15,10 +15,11 @@ $payment = mysqli_real_escape_string($dbcon, $_POST['payment']);
 $curr_user_name = $_SESSION['name'];
 
 
-$sql = "INSERT INTO blood_tests (`test_name`, `test_code`, `code`, `price_rate`, `sale_rate`, `department_id`, `payment`, `created_by`, `modified_by`, `payment`) 
-VALUES ('{$test_name}','{$test_code}','{$code}',$mrp,$sale_rate,$department,0,'{$curr_user_name}','{$curr_user_name}','{$payment}')";
+$sql = "INSERT INTO blood_tests (`test_name`, `test_code`, `code`, `price_rate`, `sale_rate`, `department_id`, `payment`, `created_by`, `modified_by`) 
+VALUES ('{$test_name}','{$test_code}','{$code}',$mrp,$sale_rate,$department,$payment,'{$curr_user_name}','{$curr_user_name}')";
 
 $result = mysqli_query($dbcon, $sql);
+
 
 if ($result) {
     echo json_encode(['status' => "success", "message" => "Successfully added new blood test"]);

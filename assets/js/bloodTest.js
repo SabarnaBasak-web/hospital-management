@@ -23,7 +23,6 @@ $("#new-blood-test-form").submit((event) => {
 
   const successHandler = (response) => {
     const jsonResponse = JSON.parse(response);
-
     const { status, message } = jsonResponse;
     if (status == "success") {
       alertTextComponent
