@@ -27,7 +27,7 @@
                 $is_super_admin = $user_type == 'Super Admin';
 
                 if ($is_super_admin) {
-                ?>
+                    ?>
                     <li>
                         <a href="blood-tests">
                             <i class="fa-solid fa-plus "></i><span>Blood test</span>
@@ -43,7 +43,12 @@
                 ?>
                 <li>
                     <a href="blood-test-patient">
-                        <i class="fa-solid fa-vial-virus "></i><span>Patient entries</span>
+                        <i class="fa-solid fa-vial-virus"></i><span>Patient entries</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="blood-test-report">
+                     <i class="fa-solid fa-clipboard-list"></i><span>Report</span>
                     </a>
                 </li>
             </ul>

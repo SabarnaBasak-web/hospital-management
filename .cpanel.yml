@@ -1,0 +1,13 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/rhcmin/public_html/
+    - /bin/cp -R assets $DEPLOYPATH
+    - /bin/cp -R constants $DEPLOYPATH
+    - /bin/cp -R controllers $DEPLOYPATH
+    - /bin/cp -R helpers $DEPLOYPATH
+    - /bin/cp -R includes $DEPLOYPATH
+    - /bin/cp -R models $DEPLOYPATH
+    - /bin/cp -R views $DEPLOYPATH
+    - /bin/cp -R PHPDotEnv $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
+    - /bin/cp .env $DEPLOYPATH

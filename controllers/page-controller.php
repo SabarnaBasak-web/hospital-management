@@ -22,6 +22,7 @@ $page_title = [
     'manage-profile' => 'Manage Profile | ' . project_name(),
     'blood-tests' => 'Blood Tests | ' . project_name(),
     'blood-test-patient' => 'Daily Patients Blood Tests List | ' . project_name(),
+    'blood-test-report' => 'Reports | ' . project_name(),
 ];
 
 
