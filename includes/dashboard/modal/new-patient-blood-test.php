@@ -116,6 +116,19 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label for="Branch">Clinic</label>
+                                <select name="branch" id="branch" class="form-control" required>
+                                    <option value="">Select Clinic</option>
+                                    <option value="1">Clinic 1</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col"></div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">

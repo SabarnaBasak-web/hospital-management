@@ -130,7 +130,8 @@ const updatePendingAmountonEdit = () => {
 };
 
 $("#edit-amountPaid").on("blur", () => {
-  updatePendingAmountonEdit();
+  const val = $("#edit-amountPaid").val();
+  if (val) updatePendingAmountonEdit();
 });
 
 $("#edit-patient-blood-test-form").submit((e) => {
