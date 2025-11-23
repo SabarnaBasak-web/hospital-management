@@ -178,3 +178,69 @@ function getPendingTestsForCurrentMonth()
 
     return $row['total_count'];
 }
+
+
+
+function getDailyBloodTestCount()
+{
+    global $dbcon;
+
+
+
+    $sql = "SELECT COUNT(*) AS total_count, branch_code FROM patient_blood_test pbt WHERE DATE(pbt.created_date) = CURDATE() GROUP BY branch_code";
+    $stmt = $dbcon->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rows = [];
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = [
+            'branch_code' => $row['branch_code'],
+            'total_count' => $row['total_count']
+        ];
+    }
+    $stmt->close();
+
+    return json_encode($rows);
+}
+
+
+
+function getDailyAmountReceived()
+{
+    global $dbcon;
+    $sql = "SELECT SUM(pbt.amount_paid) AS total_amount, branch_code FROM patient_blood_test pbt WHERE DATE(pbt.created_date) = CURDATE() GROUP BY branch_code";
+    $stmt = $dbcon->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $rows = [];
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = [
+            'branch_code' => $row['branch_code'],
+            'total_amount' => $row['total_amount']
+        ];
+    }
+    $stmt->close();
+
+    return json_encode($rows);
+}
+
+function getDailyReportProvided()
+{
+    global $dbcon;
+    $sql = "SELECT count(*) AS total_count, branch_code FROM patient_blood_test pbt WHERE DATE(pbt.report_provided) = CURDATE() GROUP BY branch_code";
+    $stmt = $dbcon->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $rows = [];
+    while ($row = $result->fetch_assoc()) {
+        $rows[] = [
+            'branch_code' => $row['branch_code'],
+            'total_count' => $row['total_count']
+        ];
+    }
+    $stmt->close();
+
+    return json_encode($rows);
+}

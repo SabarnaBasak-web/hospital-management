@@ -17,10 +17,15 @@ $branch_code = 1;
 
 $total_amount_paid = ((int)$amount_paid + (int)$previous_amt);
 
+$report_provided = null;
+if ($status == 'completed' && $amount_due == 0) {
+    $report_provided = date('Y-m-d');
+}
 
-$sql_statement = $dbcon->prepare("UPDATE patient_blood_test SET amount_paid=?, amount_due=?,status=?,payment_mode=? WHERE id=?");
+$sql_statement = $dbcon->prepare("UPDATE patient_blood_test SET amount_paid=?, amount_due=?,status=?,payment_mode=?, report_provided=? WHERE id=?");
 
-$sql_statement->bind_param('iissi', $total_amount_paid, $amount_due, $status, $payment_mode, $id);
+
+$sql_statement->bind_param('iisssi', $total_amount_paid, $amount_due, $status, $payment_mode, $report_provided, $id);
 
 if ($sql_statement->execute()) {
     echo json_encode(['status' => "success", 'message' => "Record updated successfully"]);

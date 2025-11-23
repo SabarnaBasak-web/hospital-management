@@ -74,7 +74,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody id="blood-test-table-body"></tbody>
                             </table>
                             <!-- End Table with stripped rows -->
                         </div>
