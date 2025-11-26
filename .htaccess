@@ -38,7 +38,7 @@ RewriteRule ^blood-test-report$ views/report.php
     RewriteRule ^get-blood-tests-list-by-test-name$ models/dashboard/ajax_load_searched_blood_test.php
     RewriteRule ^get-patient-blood-tests-list$ models/dashboard/ajax_load_patients_list.php
     RewriteRule ^get-patient-blood-tests-list-by-ticket$ models/dashboard/ajax_load_searched_patients_list.php
-    RewriteRule ^get-daily-reports$ models/dashboard/ajax_fetch_daily_reports.php
+    RewriteRule ^get-reports$ models/dashboard/ajax_fetch_reports.php
 
 
 
