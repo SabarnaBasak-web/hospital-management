@@ -184,9 +184,6 @@ function getPendingTestsForCurrentMonth()
 function getDailyBloodTestCount()
 {
     global $dbcon;
-
-
-
     $sql = "SELECT COUNT(*) AS total_count, branch_code FROM patient_blood_test pbt WHERE DATE(pbt.created_date) = CURDATE() GROUP BY branch_code";
     $stmt = $dbcon->prepare($sql);
     $stmt->execute();
@@ -199,7 +196,6 @@ function getDailyBloodTestCount()
         ];
     }
     $stmt->close();
-
     return json_encode($rows);
 }
 

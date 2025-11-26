@@ -99,19 +99,23 @@ include_once __DIR__ . '/../controllers/page-controller.php';
                             <h5 class="card-title">Daily Blood test <span>(Per Clinic)</span></h5>
 
                             <div class="d-flex align-items-center">
-                                <div class="ps-3">
+                                <div class="ps-3 w-100" style="min-height: 200px;">
                                     <?php
                                     $dailyBloodTests = json_decode(getDailyBloodTestCount(), true);
+
                                     if (!empty($dailyBloodTests)) {
-                                        echo '<small class="text-muted">';
-                                        $branches = [];
+                                        $labels = [];
+                                        $data = [];
                                         foreach ($dailyBloodTests as $test) {
-                                            $branches[] = 'Branch ' . htmlspecialchars($test['branch_code']) . ': ' . number_format($test['total_count']);
+                                            $labels[] = 'Branch ' . htmlspecialchars($test['branch_code']);
+                                            $data[] = (int) $test['total_count'];
                                         }
-                                        echo implode(' | ', $branches);
-                                        echo '</small>';
-                                    } else {
-                                        echo '<h6>0</h6>';
+                                    ?>
+                                        <canvas id="dailyBloodTestsChart"
+                                            data-labels='<?php echo json_encode($labels); ?>'
+                                            data-values='<?php echo json_encode($data); ?>'>
+                                        </canvas>
+                                    <?php
                                     }
                                     ?>
                                 </div>
@@ -131,18 +135,23 @@ include_once __DIR__ . '/../controllers/page-controller.php';
                             <div class="d-flex align-items-center">
 
                                 <div class="ps-3">
+
                                     <?php
                                     $dailyTotalAmount = json_decode(getDailyAmountReceived(), true);
+
                                     if (!empty($dailyTotalAmount)) {
-                                        echo '<small class="text-muted">';
-                                        $branches = [];
+                                        $labels = [];
+                                        $data = [];
                                         foreach ($dailyTotalAmount as $test) {
-                                            $branches[] = 'Branch ' . htmlspecialchars($test['branch_code']) . ':  &#x20B9;' . number_format($test['total_amount']);
+                                            $labels[] = 'Branch ' . htmlspecialchars($test['branch_code']);
+                                            $data[] = (int) $test['total_amount'];
                                         }
-                                        echo implode(' | ', $branches);
-                                        echo '</small>';
-                                    } else {
-                                        echo '<h6>0</h6>';
+                                    ?>
+                                        <canvas id="dailyTotalAmountChart"
+                                            data-labels='<?php echo json_encode($labels); ?>'
+                                            data-values='<?php echo json_encode($data); ?>'>
+                                        </canvas>
+                                    <?php
                                     }
                                     ?>
                                 </div>
@@ -163,16 +172,20 @@ include_once __DIR__ . '/../controllers/page-controller.php';
                                 <div class="ps-3">
                                     <?php
                                     $dailyReportProvided = json_decode(getDailyReportProvided(), true);
+
                                     if (!empty($dailyReportProvided)) {
-                                        echo '<small class="text-muted">';
-                                        $branches = [];
+                                        $labels = [];
+                                        $data = [];
                                         foreach ($dailyReportProvided as $test) {
-                                            $branches[] = 'Branch ' . htmlspecialchars($test['branch_code']) . ': ' . number_format($test['total_count']);
+                                            $labels[] = 'Branch ' . htmlspecialchars($test['branch_code']);
+                                            $data[] = (int) $test['total_count'];
                                         }
-                                        echo implode(' | ', $branches);
-                                        echo '</small>';
-                                    } else {
-                                        echo '<h6>0</h6>';
+                                    ?>
+                                        <canvas id="dailyReportChart"
+                                            data-labels='<?php echo json_encode($labels); ?>'
+                                            data-values='<?php echo json_encode($data); ?>'>
+                                        </canvas>
+                                    <?php
                                     }
                                     ?>
                                 </div>
@@ -190,7 +203,10 @@ include_once __DIR__ . '/../controllers/page-controller.php';
     </main><!-- End #main -->
 
     <?php include_once __DIR__ . '/../includes/dashboard-footer.php' ?>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="assets/js/charts/barChart.js">
 
+    </script>
 
 </body>
 
