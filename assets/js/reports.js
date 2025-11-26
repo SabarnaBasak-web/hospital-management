@@ -1,4 +1,4 @@
-import { ajaxHandler } from "./common/commonUtils";
+import { ajaxHandler } from "./common/commonUtils.js";
 
 $("#clinic").on("change", (event) => {
   const selectedBranch = $(event.currentTarget).val();

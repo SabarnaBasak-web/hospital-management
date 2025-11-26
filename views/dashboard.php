@@ -134,7 +134,7 @@ include_once __DIR__ . '/../controllers/page-controller.php';
 
                             <div class="d-flex align-items-center">
 
-                                <div class="ps-3">
+                                <div class="ps-3 w-100" style="min-height: 200px;">
 
                                     <?php
                                     $dailyTotalAmount = json_decode(getDailyAmountReceived(), true);
@@ -169,7 +169,7 @@ include_once __DIR__ . '/../controllers/page-controller.php';
 
                             <div class="d-flex align-items-center">
 
-                                <div class="ps-3">
+                                <div class="ps-3 w-100" style="min-height: 200px;">
                                     <?php
                                     $dailyReportProvided = json_decode(getDailyReportProvided(), true);
 

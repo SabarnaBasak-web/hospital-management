@@ -159,8 +159,8 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
             </div>
         </section>
     </main><!-- End #main -->
-    <script type="module" src="assets/js/reports.js"></script>
     <?php include_once __DIR__ . '/../includes/dashboard-footer.php' ?>
+    <script type="module" src="assets/js/reports.js"></script>
 
 
 </body>
