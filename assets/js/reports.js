@@ -2,7 +2,7 @@ import { ajaxHandler } from "./common/commonUtils";
 
 $("#clinic").on("change", (event) => {
   const selectedBranch = $(event.currentTarget).val();
-  const submitUrl = "get-daily-reports";
+  const submitUrl = "get-reports";
 
   const successHandler = (response) => {
     const res = JSON.parse(response);
