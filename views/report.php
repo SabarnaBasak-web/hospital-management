@@ -47,18 +47,109 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
             </div>
         </section>
         <section class="section report-section">
+
+            <h6>Daily</h6>
             <div class="row">
-                <div class="col-xxl-4 col-md-6">
+                <div class="col-xxl-4 col-md-4">
                     <div class="card info-card revenue-card">
                         <div class="card-body">
-                            <h5 class="card-title">Blood test <span>| This Month</span></h5>
+                            <h5 class="card-title">Blood tests </h5>
 
                             <div class="d-flex align-items-center">
                                 <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                     <i class="fa-solid fa-vial-circle-check"></i>
                                 </div>
-                                <div class="ps-3">
-                                    <h6><?php echo number_format(htmlspecialchars(getCompletedTestsForCurrentMonth())); ?></h6>
+                                <div class="ps-3 mt-2">
+                                    <h6 id="bloodTestCountText">0</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-md-4">
+                    <div class="card info-card revenue-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Reports Provided </h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-receipt"></i>
+                                </div>
+                                <div class="ps-3 mt-2">
+                                    <h6 id="reportProvidedText">0</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-md-4">
+                    <div class="card info-card revenue-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Amount Received </h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-money-bills"></i>
+                                </div>
+                                <div class="ps-3 mt-2">
+                                    <h6 id="amountReceivedText">0</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <h6>Monthly</h6>
+            <div class="row">
+                <div class="col-xxl-4 col-md-4">
+                    <div class="card info-card revenue-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Blood tests</h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-vial-circle-check"></i>
+                                </div>
+                                <div class="ps-3 mt-2">
+                                    <h6 id="monthlyBloodTestCountText">0</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-md-4">
+                    <div class="card info-card revenue-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Reports Provided </h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-receipt"></i>
+                                </div>
+                                <div class="ps-3 mt-2">
+                                    <h6 id="monthlyReportProvidedText">0</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xxl-4 col-md-4">
+                    <div class="card info-card revenue-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Amount Received</h5>
+
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                    <i class="fa-solid fa-money-bills"></i>
+                                </div>
+                                <div class="ps-3 mt-2">
+                                    <h6 id="monthlyAmountReceivedText">0</h6>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +159,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
             </div>
         </section>
     </main><!-- End #main -->
-
+    <script type="module" src="assets/js/reports.js"></script>
     <?php include_once __DIR__ . '/../includes/dashboard-footer.php' ?>
 
 
