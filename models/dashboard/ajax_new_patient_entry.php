@@ -72,9 +72,9 @@ if ($status == 'completed' && $amount_due > 0) {
 $lab_payment = 0;
 $category = '';
 
-$sql_statement = $dbcon->prepare("INSERT INTO patient_blood_test (ticket_number, blood_test_id,category, price, amount_paid, amount_due, discount, status, payment_mode, report_provided, created_by, modified_by,lab_payment, branch_code) VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?,?,?)");
+$sql_statement = $dbcon->prepare("INSERT INTO patient_blood_test (ticket_number, blood_test_id,category, price, amount_paid, total_amount_paid, amount_due, discount, status, payment_mode, report_provided, created_by, modified_by,lab_payment, branch_code) VALUES (?, ?, ?,?,?,?,?,?,?,?,?,?,?,?,?)");
 
-$sql_statement->bind_param('sisiiiisssiiii', $ticket_number, $blood_test, $category, $sale_price, $amount_paid, $amount_due, $discount, $status, $payment_mode, $report_provided, $user_id, $user_id, $lab_payment, $branch_code);
+$sql_statement->bind_param('sisiiiiisssiiii', $ticket_number, $blood_test, $category, $sale_price, $amount_paid, $amount_paid, $amount_due, $discount, $status, $payment_mode, $report_provided, $user_id, $user_id, $lab_payment, $branch_code);
 
 if ($sql_statement->execute()) {
     echo json_encode(['status' => "success", 'message' => "New Record added successfully"]);

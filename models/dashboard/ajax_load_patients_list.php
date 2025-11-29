@@ -20,7 +20,7 @@ foreach ($all_patients_list as $field => $field_value) {
         <td>" . $field_value['ticket_number'] . "</td>
         <td>" . $field_value['test_name'] . "</td>
         <td>" . $field_value['price'] . "</td>
-        <td>" . $field_value['amount_paid'] . "</td>
+        <td>" . $field_value['total_amount_paid'] . "</td>
         <td>" . $field_value['amount_due'] . "</td>
         <td>" . $field_value['discount'] . "</td>
         <td>" . $field_value['status'] . "</td>
