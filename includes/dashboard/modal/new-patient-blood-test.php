@@ -116,14 +116,14 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                             </div>
                         </div>
                     </div>
-
+                    <!-- Disabling this clinic selection  temporarily -->
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
                                 <label for="Branch">Clinic</label>
-                                <select name="branch" id="branch" class="form-control" required>
+                                <select name="branch" id="branch" class="form-control" disabled>
                                     <option value="">Select Clinic</option>
-                                    <option value="1">Clinic 1</option>
+                                    <option value="1" selected>Clinic 1</option>
                                 </select>
                             </div>
                         </div>

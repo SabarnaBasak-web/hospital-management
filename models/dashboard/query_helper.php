@@ -142,8 +142,8 @@ function getCompletedTestsForCurrentMonth()
             FROM patient_blood_test pbt 
             WHERE pbt.status = 'completed' 
             AND pbt.amount_due = 0
-            AND YEAR(pbt.created_date) = ? 
-            AND MONTH(pbt.created_date) = ?";
+            AND YEAR(pbt.modified_date) = ? 
+            AND MONTH(pbt.modified_date) = ?";
 
     $stmt = $dbcon->prepare($sql);
     $stmt->bind_param("ss", $curr_year, $curr_month);
@@ -165,12 +165,12 @@ function getPendingTestsForCurrentMonth()
     $sql = "SELECT COUNT(*) as total_count 
             FROM patient_blood_test pbt 
             WHERE pbt.status = 'pending' 
-            OR pbt.amount_due > 0
-            AND YEAR(pbt.created_date) = ? 
-            AND MONTH(pbt.created_date) = ?";
+            AND pbt.amount_due > 0
+            AND ((YEAR(pbt.created_date) = ? AND MONTH(pbt.created_date) = ?)
+            OR (YEAR(pbt.modified_date) = ? AND MONTH(pbt.modified_date) = ?))";
 
     $stmt = $dbcon->prepare($sql);
-    $stmt->bind_param("ss", $curr_year, $curr_month);
+    $stmt->bind_param("ssss", $curr_year, $curr_month, $curr_year, $curr_month);
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();

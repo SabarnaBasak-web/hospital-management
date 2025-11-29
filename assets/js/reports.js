@@ -1,7 +1,9 @@
 import { ajaxHandler } from "./common/commonUtils.js";
 
-$("#clinic").on("change", (event) => {
-  const selectedBranch = $(event.currentTarget).val();
+const reportHandler = (event) => {
+  const selectedBranch = event
+    ? $(event.currentTarget).val()
+    : $("#clinic").val();
   const submitUrl = "get-reports";
 
   const successHandler = (response) => {
@@ -27,4 +29,9 @@ $("#clinic").on("change", (event) => {
     errorHandler,
     successHandler
   );
+};
+
+$(document).ready(() => {
+  console.log("@@ document loaded");
+  reportHandler();
 });
