@@ -32,6 +32,5 @@ const reportHandler = (event) => {
 };
 
 $(document).ready(() => {
-  console.log("@@ document loaded");
   reportHandler();
 });
