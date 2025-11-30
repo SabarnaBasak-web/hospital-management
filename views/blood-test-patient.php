@@ -143,7 +143,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                 form[0].reset();
                 const {
                     amount_due,
-                    amount_paid,
+                    total_amount_paid,
                     discount,
                     id,
                     payment_mode,
@@ -155,7 +155,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                 $("#edit-ticketNumber").val(ticket_number);
                 $("#edit-bloodTest").val(test_name)
                 $("#edit-price").val(price);
-                $("#previous-payment").val(amount_paid);
+                $("#previous-payment").val(total_amount_paid);
                 $("#edit-dueAmount").val(amount_due);
                 $("#edit-discount").val(discount);
                 $("#edit-paymentMode").val(payment_mode);
