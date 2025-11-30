@@ -204,7 +204,7 @@ function getDailyBloodTestCount()
 function getDailyAmountReceived()
 {
     global $dbcon;
-    $sql = "SELECT SUM(pbt.amount_paid) AS total_amount, branch_code FROM patient_blood_test pbt WHERE DATE(pbt.created_date) = CURDATE() GROUP BY branch_code";
+    $sql = "SELECT SUM(p.amount) AS total_amount, branch_code FROM payments p WHERE DATE(p.created_date) = CURDATE() GROUP BY branch_code";
     $stmt = $dbcon->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result();

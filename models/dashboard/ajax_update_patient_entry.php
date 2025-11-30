@@ -35,8 +35,8 @@ $sql_statement = $dbcon->prepare("UPDATE patient_blood_test SET amount_paid=?, t
 $sql_statement->bind_param('iiissssi', $amount_paid, $total_amount_paid, $amount_due, $status, $payment_mode, $report_provided, $modified_date, $id);
 
 
-$sql_statement2 = $dbcon->prepare("INSERT INTO payments(ticket_number,amount,payment_type) VALUES(?,?,?)");
-$sql_statement2->bind_param('iis', $ticket_number, $amount_paid, $payment_mode);
+$sql_statement2 = $dbcon->prepare("INSERT INTO payments(ticket_number,amount,payment_type,branch_code) VALUES(?,?,?,?)");
+$sql_statement2->bind_param('iiss', $ticket_number, $amount_paid, $payment_mode, $branch_code);
 
 if ($sql_statement->execute() && $sql_statement2->execute()) {
     echo json_encode(['status' => "success", 'message' => "Record updated successfully"]);

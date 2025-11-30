@@ -77,8 +77,8 @@ $sql_statement = $dbcon->prepare("INSERT INTO patient_blood_test (ticket_number,
 $sql_statement->bind_param('sisiiiiisssiiii', $ticket_number, $blood_test, $category, $sale_price, $amount_paid, $amount_paid, $amount_due, $discount, $status, $payment_mode, $report_provided, $user_id, $user_id, $lab_payment, $branch_code);
 
 
-$sql_statement2 = $dbcon->prepare("INSERT INTO payments(ticket_number,amount,payment_type) VALUES(?,?,?)");
-$sql_statement2->bind_param('iis', $ticket_number, $amount_paid, $payment_mode);
+$sql_statement2 = $dbcon->prepare("INSERT INTO payments(ticket_number,amount,payment_type, branch_code) VALUES(?,?,?,?)");
+$sql_statement2->bind_param('iiss', $ticket_number, $amount_paid, $payment_mode, $branch_code);
 
 if ($sql_statement->execute() && $sql_statement2->execute()) {
     echo json_encode(['status' => "success", 'message' => "New Record added successfully"]);
