@@ -121,7 +121,7 @@ include_once __DIR__ . '/../../../models/dashboard/query_helper.php';
                         <div class="col">
                             <div class="mb-3">
                                 <label for="Branch">Clinic</label>
-                                <select name="branch" id="branch" class="form-control" disabled>
+                                <select name="branch" id="branch" class="form-control">
                                     <option value="">Select Clinic</option>
                                     <option value="1" selected>Clinic 1</option>
                                 </select>

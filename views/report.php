@@ -37,7 +37,7 @@ include_once __DIR__ . '/../models/dashboard/query_helper.php';
                     <form action="" method="post">
                         <div class="form-group">
                             <label for="clinic">Clinic</label>
-                            <select name="clinic" id="clinic" class="form-control" disabled>
+                            <select name="clinic" id="clinic" class="form-control">
                                 <option value="">Select Clinic</option>
                                 <option value="1" selected>Clinic 1</option>
                             </select>
