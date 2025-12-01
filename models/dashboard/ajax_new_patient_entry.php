@@ -27,13 +27,13 @@ if (empty($blood_test)) {
     exit;
 }
 
-if (empty($amount_paid) || $amount_paid <= 0) {
+if ($amount_paid == '' || !is_numeric($amount_paid) || $amount_paid < 0) {
     echo json_encode(['status' => "error", 'message' => "Amount paid is required"]);
     exit;
 }
 
-if (empty($amount_due) || $amount_due <= 0) {
-    echo json_encode(['status' => "error", 'message' => "Due amount is required"]);
+if ($amount_due == '' || !is_numeric($amount_due) || $amount_due < 0) {
+    echo json_encode(['status' => "error", 'message' => "Due amount is required" . $amount_due]);
     exit;
 }
 
@@ -47,7 +47,7 @@ if (empty($mrp)) {
     exit;
 }
 
-if (empty($sale_price) || $sale_price <= 0) {
+if ($sale_price == '' || !is_numeric($sale_price) || $sale_price < 0) {
     echo json_encode(['status' => "error", 'message' => "Sale price is required"]);
     exit;
 }
